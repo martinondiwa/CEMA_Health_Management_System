@@ -49,7 +49,7 @@ class ClientRegistrationForm(FlaskForm):
 
 # Form to create a health program
 class ProgramForm(FlaskForm):
-    type_id = SelectField("Program Type", coerce=int, validators=[DataRequired()])
+    type = StringField('Program Type', validators=[DataRequired()])
     name = StringField("Program Name", validators=[DataRequired(), Length(max=100)])
     description = TextAreaField("Description", validators=[Optional(), Length(max=500)])
     submit = SubmitField("Create")
