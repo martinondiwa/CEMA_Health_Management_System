@@ -89,4 +89,4 @@ def view_client(client_id):
 @doctor_required
 def view_all_clients():
     clients = Client.query.all()  # Fetch all clients
-    return render_template('clients_list.html', clients=clients)
+    return render_template('clients_list.html', clients=clients)  # Removed the extra closing parenthesis
