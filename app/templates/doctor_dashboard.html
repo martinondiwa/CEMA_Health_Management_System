@@ -1,0 +1,67 @@
+<!-- app/templates/doctor_dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %}Doctor Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+  <h2>Welcome, Dr. {{ current_user.name }}</h2>
+
+  <div class="dashboard-sections">
+
+    <!-- Create Program -->
+    <div class="card">
+      <h3>Create Program</h3>
+      <form action="{{ url_for('doctor.create_program') }}" method="POST">
+        {{ program_form.hidden_tag() }}
+        <label for="name">Program Name</label>
+        {{ program_form.name }}
+        <label for="description">Description</label>
+        {{ program_form.description }}
+        <button type="submit" class="btn">Create</button>
+      </form>
+    </div>
+
+    <!-- Register Client -->
+    <div class="card">
+      <h3>Register New Client</h3>
+      <form action="{{ url_for('doctor.register_client') }}" method="POST">
+        {{ client_form.hidden_tag() }}
+        <label for="name">Full Name</label>
+        {{ client_form.name }}
+        <label for="dob">Date of Birth</label>
+        {{ client_form.dob }}
+        <label for="gender">Gender</label>
+        {{ client_form.gender }}
+        <label for="contact">Contact Info</label>
+        {{ client_form.contact }}
+        <button type="submit" class="btn">Register</button>
+      </form>
+    </div>
+
+    <!-- Enroll Client -->
+    <div class="card">
+      <h3>Enroll Client in Program</h3>
+      <form action="{{ url_for('doctor.enroll_client') }}" method="POST">
+        {{ enrollment_form.hidden_tag() }}
+        <label for="client_id">Client</label>
+        {{ enrollment_form.client_id }}
+        <label for="program_id">Program</label>
+        {{ enrollment_form.program_id }}
+        <button type="submit" class="btn">Enroll</button>
+      </form>
+    </div>
+
+    <!-- Search Clients -->
+    <div class="card">
+      <h3>Search Clients</h3>
+      <form action="{{ url_for('doctor.search_client') }}" method="GET">
+        <label for="query">Search by Name or ID</label>
+        <input type="text" name="query" placeholder="Enter client name or ID" required>
+        <button type="submit" class="btn">Search</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
