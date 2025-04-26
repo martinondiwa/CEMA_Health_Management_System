@@ -24,12 +24,30 @@ class RegistrationForm(FlaskForm):
 
 # Form to register a client
 class ClientRegistrationForm(FlaskForm):
-    full_name = StringField('Full Name', validators=[DataRequired()])
-    gender = SelectField('Gender', choices=[('Male', 'Male'), ('Female', 'Female')], validators=[DataRequired()])
-    date_of_birth = DateField('Date of Birth', validators=[DataRequired()])
-    contact_number = StringField('Contact Number')
-    address = StringField('Address')
-    submit = SubmitField('Register Client')
+    first_name = StringField("First Name", validators=[DataRequired(), Length(max=50)])
+    middle_name = StringField("Middle Name", validators=[Optional(), Length(max=50)])
+    sir_name = StringField("Sir Name", validators=[DataRequired(), Length(max=50)])
+
+    date_of_birth = DateField("Date of Birth", format='%Y-%m-%d', validators=[DataRequired()])
+    
+    gender = SelectField("Gender", choices=[
+        ('Male', 'Male'), 
+        ('Female', 'Female'), 
+        ('Other', 'Other')
+    ], validators=[DataRequired()])
+
+    national_id = StringField("National ID", validators=[Optional(), Length(max=20)])
+    birth_certificate = StringField("Birth Certificate Number", validators=[Optional(), Length(max=20)])
+
+    country = StringField("Country", validators=[DataRequired(), Length(max=50)])
+    county = StringField("County", validators=[DataRequired(), Length(max=50)])
+    subcounty = StringField("Sub-county", validators=[DataRequired(), Length(max=50)])
+    village = StringField("Village / Locality", validators=[DataRequired(), Length(max=100)])
+
+    contact_number = StringField("Contact Number", validators=[DataRequired(), Length(max=100)])
+    address = StringField("Address", validators=[Optional(), Length(max=200)])
+
+    submit = SubmitField("Register Client")
 
 # Form to create a health program
 class ProgramForm(FlaskForm):
