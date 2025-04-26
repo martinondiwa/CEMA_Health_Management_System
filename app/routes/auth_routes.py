@@ -20,7 +20,7 @@ def login():
         if user and check_password_hash(user.password_hash, form.password.data):  # Use password_hash instead of password
             login_user(user)
             flash('Login successful!', 'success')
-            return redirect(url_for('doctor.view_dashboard'))  # Redirect to doctor dashboard after successful login
+            return redirect(url_for('doctor.dashboard'))  # Redirect to doctor dashboard after successful login
         else:
             flash('Invalid login credentials. Please try again.', 'danger')
     return render_template('auth/login.html', form=form)
