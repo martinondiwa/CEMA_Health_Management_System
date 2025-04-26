@@ -28,28 +28,6 @@
       </form>
     </div>
 
-    <!-- Enroll Client -->
-    <div class="card">
-      <h3>Enroll Client in Program</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Client Name</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for client in clients %}
-          <tr>
-            <td>{{ client.name }}</td>
-            <td>
-              <a href="{{ url_for('doctor.enroll_client', client_id=client.id) }}" class="btn">Enroll</a>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
 
     <!-- Register New client -->
     <h3 class="mb-4">Register New Client</h3>
@@ -118,6 +96,28 @@
         <button type="submit" class="btn btn-success">Register Client</button>
       </div>
     </form>
+
+
+<!-- Enroll Client in Program (Full Width) -->
+<section class="container-fluid mb-5">
+  <h3 class="mb-3">Enroll Client in Program</h3>
+
+  <form class="row gy-2 gx-3 align-items-center" method="get" action="{{ url_for('doctor.enroll_client', client_id=0) }}">
+    <div class="col-auto">
+      <label class="visually-hidden" for="clientSelect">Client</label>
+      <select class="form-select" id="clientSelect" name="client_id" required>
+        <option selected disabled value="">Choose a client...</option>
+        {% for client in clients %}
+          <option value="{{ client.id }}">{{ client.full_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="col-auto">
+      <button type="submit" class="btn btn-success">Enroll</button>
+    </div>
+  </form>
+</section>
 
     <!-- Search Clients -->
     <div class="card">
