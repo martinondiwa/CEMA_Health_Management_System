@@ -63,19 +63,24 @@ def register_client():
     if form.validate_on_submit():
         full_name = " ".join(filter(None, [form.first_name.data, form.middle_name.data, form.sir_name.data]))
         new_client = Client(
-            full_name=full_name,  # ✅ Corrected from 'name' to 'full_name'
+            full_name=full_name,
             gender=form.gender.data,
             date_of_birth=form.date_of_birth.data,
+            national_id=form.national_id.data,
+            birth_certificate=form.birth_certificate.data,
+            country=form.country.data,
+            county=form.county.data,
+            subcounty=form.subcounty.data,
+            village=form.village.data,
             contact_number=form.contact_number.data,
             address=form.address.data,
-            created_by=current_user.id  # ✅ This maps to 'created_by' in Client model
+            created_by=current_user.id
         )
         db.session.add(new_client)
         db.session.commit()
         flash("Client registered successfully!", "success")
         return redirect(url_for('doctor.dashboard'))
     return render_template('register_client.html', form=form)
-
 
 # 4. Enroll a Client in a Program
 @doctor_bp.route('/client/enroll/<int:client_id>', methods=['GET', 'POST'])
