@@ -43,17 +43,20 @@ def dashboard():
 @doctor_required
 def create_program():
     form = ProgramForm()
+    form.type_id.choices = [(pt.id, pt.name) for pt in ProgramType.query.all()]
+
     if form.validate_on_submit():
         new_program = Program(
-            title=form.name.data,  # ❗ 'title' instead of 'name' (models.py uses `title`)
-            description=form.description.data
+            title=form.name.data,
+            description=form.description.data,
+            type_id=form.type_id.data
         )
         db.session.add(new_program)
         db.session.commit()
         flash("Health program created successfully!", "success")
         return redirect(url_for('doctor.dashboard'))
-    return render_template('create_program.html', form=form)
 
+    return render_template('create_program.html', form=form)
 
 # 3. Register a New Client
 @doctor_bp.route('/client/register', methods=['GET', 'POST'])
