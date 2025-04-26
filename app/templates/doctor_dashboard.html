@@ -154,4 +154,17 @@
   </div>
 </form>
 
+<!-- Search Clients -->
+    <div class="card">
+      <h3>Search Clients</h3>
+      <form action="{{ url_for('doctor.search_client') }}" method="GET">
+        <label for="query">Search by Name or ID</label>
+        <input type="text" name="query" placeholder="Enter client name or ID" required>
+        <button type="submit" class="btn">Search</button>
+      </form>
+    </div>
+
+  </div>
+
+
 {% endblock %}
