@@ -102,3 +102,16 @@ def view_client(client_id):
 def view_all_clients():
     clients = Client.query.all()  # Fetch all clients
     return render_template('clients_list.html', clients=clients)  # Removed the extra closing parenthesis
+
+# 7. Search for a Client
+@doctor_bp.route('/client/search', methods=['GET'])
+@doctor_required
+def search_client():
+    query = request.args.get('query')  # Get the search query from the URL parameters
+    if query:
+        clients = Client.query.filter(
+            (Client.name.ilike(f'%{query}%')) | (Client.id.ilike(f'%{query}%'))
+        ).all()
+    else:
+        clients = []  # Return an empty list if there's no query
+    return render_template('search_results.html', clients=clients, query=query)
