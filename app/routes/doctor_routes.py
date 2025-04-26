@@ -3,7 +3,6 @@ from flask_login import login_required, current_user
 from app.models import db, Program, Client, Enrollment
 from app.forms import ProgramForm, ClientForm, EnrollmentForm
 from functools import wraps
-from app.forms import ClientForm
 
 doctor_bp = Blueprint('doctor', __name__, url_prefix='/doctor')
 
@@ -18,16 +17,16 @@ def doctor_required(func):
         return func(*args, **kwargs)
     return wrapper
 
+
 # 1. Doctor's Dashboard (View Programs and Clients)
 @doctor_bp.route('/dashboard')
 @doctor_required
 def dashboard():
-    client_form = ClientForm()
     programs = Program.query.all()
     clients = Client.query.all()
     program_form = ProgramForm()
     client_form = ClientForm()
-    enrollment_form = EnrollmentForm()  # ← add this too
+    enrollment_form = EnrollmentForm()
 
     return render_template(
         'doctor_dashboard.html',
@@ -35,36 +34,38 @@ def dashboard():
         clients=clients,
         program_form=program_form,
         client_form=client_form,
-        enrollment_form=enrollment_form  # ← pass this
+        enrollment_form=enrollment_form
     )
+
 
 # 2. Create a new Health Program
 @doctor_bp.route('/program/create', methods=['GET', 'POST'])
 @doctor_required
 def create_program():
-    form = ProgramForm()  # WTForm for creating programs
+    form = ProgramForm()
     if form.validate_on_submit():
         new_program = Program(
             name=form.name.data,
             description=form.description.data,
-            created_by=current_user.id  # Created by the logged-in doctor
+            created_by=current_user.id
         )
         db.session.add(new_program)
         db.session.commit()
         flash("Health program created successfully!", "success")
-        return redirect(url_for('doctor.dashboard'))  # Redirect back to dashboard
+        return redirect(url_for('doctor.dashboard'))
     return render_template('create_program.html', form=form)
+
 
 # 3. Register a New Client
 @doctor_bp.route('/client/register', methods=['GET', 'POST'])
 @doctor_required
 def register_client():
-    form = ClientForm()  # WTForm for registering clients
+    form = ClientForm()
     if form.validate_on_submit():
-        full_name = f"{form.first_name.data} {form.middle_name.data or ''} {form.sir_name.data}".strip()
+        full_name = " ".join(filter(None, [form.first_name.data, form.middle_name.data, form.sir_name.data]))
         new_client = Client(
             name=full_name,
-            dob=form.dob.data,
+            date_of_birth=form.date_of_birth.data,
             gender=form.gender.data,
             national_id=form.national_id.data,
             birth_certificate=form.birth_certificate.data,
@@ -87,42 +88,45 @@ def register_client():
 @doctor_bp.route('/client/enroll/<int:client_id>', methods=['GET', 'POST'])
 @doctor_required
 def enroll_client(client_id):
-    client = Client.query.get_or_404(client_id)  # Fetch the client by ID
-    programs = Program.query.all()  # Fetch all available programs
+    client = Client.query.get_or_404(client_id)
+    programs = Program.query.all()
     if request.method == 'POST':
-        selected_programs = request.form.getlist('program_ids')  # List of selected programs
+        selected_programs = request.form.getlist('program_ids')
         for program_id in selected_programs:
             program = Program.query.get(int(program_id))
             if program and program not in client.programs:
-                client.programs.append(program)  # Enroll client in the program
+                client.programs.append(program)
         db.session.commit()
         flash("Client enrolled in the selected programs!", "success")
-        return redirect(url_for('doctor.view_client', client_id=client.id))  # Redirect to client's profile
+        return redirect(url_for('doctor.view_client', client_id=client.id))
     return render_template('enroll_client.html', client=client, programs=programs)
+
 
 # 5. View a Specific Client's Profile
 @doctor_bp.route('/client/profile/<int:client_id>')
 @doctor_required
 def view_client(client_id):
-    client = Client.query.get_or_404(client_id)  # Fetch the client by ID
+    client = Client.query.get_or_404(client_id)
     return render_template('client_profile.html', client=client)
+
 
 # 6. View All Clients
 @doctor_bp.route('/clients')
 @doctor_required
 def view_all_clients():
-    clients = Client.query.all()  # Fetch all clients
-    return render_template('clients_list.html', clients=clients)  # Removed the extra closing parenthesis
+    clients = Client.query.all()
+    return render_template('clients_list.html', clients=clients)
+
 
 # 7. Search for a Client
 @doctor_bp.route('/client/search', methods=['GET'])
 @doctor_required
 def search_client():
-    query = request.args.get('query')  # Get the search query from the URL parameters
+    query = request.args.get('query')
     if query:
         clients = Client.query.filter(
             (Client.name.ilike(f'%{query}%')) | (Client.id.ilike(f'%{query}%'))
         ).all()
     else:
-        clients = []  # Return an empty list if there's no query
+        clients = []
     return render_template('search_results.html', clients=clients, query=query)
