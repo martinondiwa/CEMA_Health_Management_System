@@ -59,18 +59,27 @@ def create_program():
 def register_client():
     form = ClientForm()  # WTForm for registering clients
     if form.validate_on_submit():
+        full_name = f"{form.first_name.data} {form.middle_name.data or ''} {form.sir_name.data}".strip()
         new_client = Client(
-            name=form.name.data,
-            age=form.age.data,
-            phone=form.phone.data,
-            email=form.email.data,
-            assigned_doctor=current_user.id  # Assign this client to the logged-in doctor
+            name=full_name,
+            dob=form.dob.data,
+            gender=form.gender.data,
+            national_id=form.national_id.data,
+            birth_certificate=form.birth_certificate.data,
+            country=form.country.data,
+            county=form.county.data,
+            subcounty=form.subcounty.data,
+            village=form.village.data,
+            contact_number=form.contact_number.data,
+            address=form.address.data,
+            assigned_doctor=current_user.id
         )
         db.session.add(new_client)
         db.session.commit()
         flash("Client registered successfully!", "success")
-        return redirect(url_for('doctor.dashboard'))  # Redirect to dashboard
+        return redirect(url_for('doctor.dashboard'))
     return render_template('register_client.html', form=form)
+
 
 # 4. Enroll a Client in a Program
 @doctor_bp.route('/client/enroll/<int:client_id>', methods=['GET', 'POST'])
