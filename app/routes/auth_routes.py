@@ -17,7 +17,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()  # Check if the email exists
-        if user and check_password_hash(user.password, form.password.data):  # Validate password
+        if user and check_password_hash(user.password_hash, form.password.data):  # Use password_hash instead of password
             login_user(user)
             flash('Login successful!', 'success')
             return redirect(url_for('doctor.view_dashboard'))  # Redirect to doctor dashboard after successful login
