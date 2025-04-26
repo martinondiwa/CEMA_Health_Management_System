@@ -23,7 +23,13 @@ def doctor_required(func):
 def dashboard():
     programs = Program.query.all()  # Fetch all programs
     clients = Client.query.all()  # Fetch all clients
-    return render_template('doctor_dashboard.html', programs=programs, clients=clients)
+    program_form = ProgramForm() 
+    return render_template(
+        'doctor_dashboard.html',
+        programs=programs,
+        clients=clients,
+        program_form=program_form  # <- pass it to the template
+    )
 
 # 2. Create a new Health Program
 @doctor_bp.route('/program/create', methods=['GET', 'POST'])
