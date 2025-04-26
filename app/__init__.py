@@ -39,4 +39,4 @@ def create_app(config_class=Config):
     app.register_blueprint(api_bp, url_prefix='/api')
     app.register_blueprint(index_bp)
 
-    return app  # ✅ Make sure this is indented properly!
+    return app  
