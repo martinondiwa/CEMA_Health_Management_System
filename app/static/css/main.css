@@ -1,0 +1,35 @@
+/* app/static/css/main.css */
+.hero {
+  background: #f9f9f9;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.action-buttons .btn {
+  padding: 12px 24px;
+  margin: 0 10px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #007bff;
+  color: #007bff;
+}
