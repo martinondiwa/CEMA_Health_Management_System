@@ -5,35 +5,57 @@
 
 {% block forms_styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+<style>
+  @media (min-width: 1025px) {
+    .h-custom {
+      height: 100vh !important;
+    }
+  }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="auth-container">
-  <h2>Login</h2>
-  <form method="POST" action="{{ url_for('auth.login') }}">
-    {{ form.hidden_tag() }}
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+            class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+            alt="Sample photo">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 text-center">Login</h3>
 
-    <div class="form-group">
-      {{ form.email.label }}<br>
-      {{ form.email(class_='form-control') }}
-      {% for error in form.email.errors %}
-        <span class="form-error">{{ error }}</span>
-      {% endfor %}
+            <form class="px-md-2" method="POST" action="{{ url_for('auth.login') }}">
+              {{ form.hidden_tag() }}
+
+              <div class="form-outline mb-4">
+                {{ form.email(class_='form-control') }}
+                <label class="form-label" for="{{ form.email.id }}">{{ form.email.label.text }}</label>
+                {% for error in form.email.errors %}
+                  <span class="form-error text-danger">{{ error }}</span>
+                {% endfor %}
+              </div>
+
+              <div class="form-outline mb-4">
+                {{ form.password(class_='form-control') }}
+                <label class="form-label" for="{{ form.password.id }}">{{ form.password.label.text }}</label>
+                {% for error in form.password.errors %}
+                  <span class="form-error text-danger">{{ error }}</span>
+                {% endfor %}
+              </div>
+
+              <div class="mb-4">
+                {{ form.submit(class_='btn btn-success btn-lg w-100') }}
+              </div>
+
+              <p class="auth-link text-center">Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a></p>
+            </form>
+
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="form-group">
-      {{ form.password.label }}<br>
-      {{ form.password(class_='form-control') }}
-      {% for error in form.password.errors %}
-        <span class="form-error">{{ error }}</span>
-      {% endfor %}
-    </div>
-
-    <div class="form-group">
-      {{ form.submit(class_='btn btn-primary') }}
-    </div>
-
-    <p class="auth-link">Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a></p>
-  </form>
-</div>
+  </div>
+</section>
 {% endblock %}
