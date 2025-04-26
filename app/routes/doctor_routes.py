@@ -83,21 +83,40 @@ def register_client():
     return render_template('register_client.html', form=form)
 
 # 4. Enroll a Client in a Program
-@doctor_bp.route('/client/enroll/<int:client_id>', methods=['GET', 'POST'])
+@doctor_bp.route('/client/enroll', methods=['GET', 'POST'])
 @doctor_required
-def enroll_client(client_id):
-    client = Client.query.get_or_404(client_id)
-    programs = Program.query.all()
+def enroll_client():
+    programs = Program.query.all()  # Fetch all available programs
+    program_types = ProgramType.query.all()  # Fetch all program types
+
     if request.method == 'POST':
-        selected_programs = request.form.getlist('program_ids')
-        for program_id in selected_programs:
-            program = Program.query.get(int(program_id))
-            if program and program not in client.programs:
-                client.programs.append(program)
+        client_name = request.form.get('client_name')
+        admission_number = request.form.get('admission_number')
+        program_id = request.form.get('program_id')
+        program_type_id = request.form.get('program_type')
+
+        # Fetch the program and program type
+        program = Program.query.get(program_id)
+        program_type = ProgramType.query.get(program_type_id)
+
+        # Add the new enrollment (assuming the Enrollment model is linked to client and program)
+        new_enrollment = Enrollment(
+            client_name=client_name,
+            admission_number=admission_number,
+            program_id=program.id,
+            program_type_id=program_type.id
+        )
+        db.session.add(new_enrollment)
         db.session.commit()
-        flash("Client enrolled in the selected programs!", "success")
-        return redirect(url_for('doctor.view_client', client_id=client.id))
-    return render_template('enroll_client.html', client=client, programs=programs)
+
+        flash("Client enrolled successfully!", "success")
+        return redirect(url_for('doctor.dashboard'))
+
+    return render_template(
+        'enroll_client.html',  # Your template name
+        programs=programs,
+        program_types=program_types
+    )
 
 
 # 5. View a Specific Client's Profile
