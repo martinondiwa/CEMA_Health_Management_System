@@ -1,5 +1,3 @@
-# app/forms.py
-
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, DateField, SelectField, IntegerField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional
@@ -22,7 +20,7 @@ class RegistrationForm(FlaskForm):
     is_admin = BooleanField('Register as Admin')  # Optional toggle
     submit = SubmitField('Register')
 
-# Form to register a client
+# Form to register a client (use this in doctor_routes.py for client registration)
 class ClientRegistrationForm(FlaskForm):
     first_name = StringField("First Name", validators=[DataRequired(), Length(max=50)])
     middle_name = StringField("Middle Name", validators=[Optional(), Length(max=50)])
@@ -54,11 +52,13 @@ class ProgramForm(FlaskForm):
     title = StringField('Program Title', validators=[DataRequired()])
     description = TextAreaField('Description')
     submit = SubmitField('Create Program')
+
+# Client Form for doctor dashboard (not needed here, but kept for reference)
 class ClientForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Submit')
-    
+
 # Form to enroll client into a program
 class EnrollmentForm(FlaskForm):
     client_id = IntegerField('Client ID', validators=[DataRequired()])
