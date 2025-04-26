@@ -1,0 +1,34 @@
+<!-- app/templates/client_profile.html -->
+{% extends "base.html" %}
+
+{% block title %}Client Profile{% endblock %}
+
+{% block content %}
+<div class="client-profile-container">
+  <h2>Client Profile</h2>
+
+  <div class="profile-card">
+    <h3>{{ client.name }}</h3>
+    <p><strong>Date of Birth:</strong> {{ client.dob.strftime('%Y-%m-%d') }}</p>
+    <p><strong>Gender:</strong> {{ client.gender }}</p>
+    <p><strong>Contact Info:</strong> {{ client.contact }}</p>
+  </div>
+
+  <div class="enrollments-section">
+    <h3>Enrolled Programs</h3>
+    {% if client.enrollments %}
+      <ul class="enrollment-list">
+        {% for enrollment in client.enrollments %}
+          <li>
+            <strong>{{ enrollment.program.name }}</strong> – {{ enrollment.program.description }}
+            <br>
+            <em>Enrolled on: {{ enrollment.date_enrolled.strftime('%Y-%m-%d') }}</em>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No enrollments found for this client.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
