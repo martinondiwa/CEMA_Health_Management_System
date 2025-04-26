@@ -12,7 +12,7 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('doctor.view_dashboard'))  # Redirect to doctor dashboard if already logged in
+       return redirect(url_for('doctor.dashboard')) # Redirect to doctor dashboard if already logged in
 
     form = LoginForm()
     if form.validate_on_submit():
