@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <label for="dob">Date of Birth</label>
-            {{ form.dob(class="form-control") }}
+            {{ form.date_of_birth(class="form-control") }}
         </div>
 
         <div class="form-group">
@@ -66,8 +66,13 @@
         </div>
 
         <div class="form-group">
-            <label for="contact">Contact Info</label>
-            {{ form.contact(class="form-control") }}
+            <label for="contact_number">Contact Info</label>
+            {{ form.contact_number(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+            {{ form.address(class="form-control") }}
         </div>
 
         <button type="submit" class="btn-submit">Register Client</button>
