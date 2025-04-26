@@ -1,3 +1,4 @@
+<!-- doctor_dashboard.html -->
 {% extends "base.html" %}
 
 {% block title %}Doctor Dashboard{% endblock %}
@@ -5,123 +6,163 @@
 {% block extra_styles %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block content %}
 <div class="dashboard-container">
-  <h2 class="welcome-text">Welcome, Dr. {{ current_user.name }}</h2>
+  <h2>Welcome, Dr. {{ current_user.name }}</h2>
 
   <div class="dashboard-sections">
 
-    <!-- Create Program -->
-    <div class="card dashboard-card">
-      <div class="card-header">
-        <h3>Create Program</h3>
-      </div>
-      <div class="card-body">
-        <form action="{{ url_for('doctor.create_program') }}" method="POST" class="row gy-2 gx-3 align-items-center">
-          {{ program_form.hidden_tag() }}
-          <div class="col-md-4">
-            <label for="type" class="form-label">Program Type</label>
-            <input type="text" name="type" class="form-control" placeholder="Enter Program Type">
-          </div>
-          <div class="col-md-4">
-            <label for="name" class="form-label">Program Name</label>
-            {{ program_form.name(class="form-control") }}
-          </div>
-          <div class="col-md-12">
-            <label for="description" class="form-label">Program Description</label>
-            {{ program_form.description(class="form-control") }}
-          </div>
-          <div class="col-auto mt-3">
-            <button type="submit" class="btn btn-success">Create</button>
-          </div>
-        </form>
-      </div>
+   
+   <!-- Create Program -->
+<div class="container-fluid my-4">
+  <h3>Create Program</h3>
+  <form action="{{ url_for('doctor.create_program') }}" method="POST" class="row gy-2 gx-3 align-items-center">
+    {{ program_form.hidden_tag() }}
+
+   <div class="col-md-4">
+  <label for="type" class="form-label">Program Type</label>
+  <input type="text" name="type" class="form-control" placeholder="Enter Program Type">
+   </div>
+
+    <div class="col-md-4">
+      <label for="name" class="form-label">Program Name</label>
+      {{ program_form.name(class="form-control") }}
     </div>
 
-    <!-- Register New Client -->
-    <div class="card dashboard-card">
-      <div class="card-header">
-        <h3>Register New Client</h3>
-      </div>
-      <div class="card-body">
-        <form action="{{ url_for('doctor.register_client') }}" method="POST" class="row g-3">
-          {{ client_form.hidden_tag() }}
-          <div class="col-md-4">
-            <label for="first_name" class="form-label">First Name</label>
-            {{ client_form.first_name(class="form-control") }}
-          </div>
-          <div class="col-md-4">
-            <label for="middle_name" class="form-label">Middle Name</label>
-            {{ client_form.middle_name(class="form-control") }}
-          </div>
-          <div class="col-md-4">
-            <label for="sir_name" class="form-label">Sir Name</label>
-            {{ client_form.sir_name(class="form-control") }}
-          </div>
-          <!-- Additional form fields go here -->
-          <div class="col-12">
-            <button type="submit" class="btn btn-success">Register Client</button>
-          </div>
-        </form>
-      </div>
+    <div class="col-md-12">
+      <label for="description" class="form-label">Program Description</label>
+      {{ program_form.description(class="form-control") }}
     </div>
 
-    <!-- Enroll Client in Program -->
-    <div class="card dashboard-card">
-      <div class="card-header">
-        <h3>Enroll Client in Program</h3>
-      </div>
-      <div class="card-body">
-        <form class="row gy-2 gx-3 align-items-center" method="POST" action="{{ url_for('doctor.enroll_client') }}">
-          <div class="col-auto">
-            <label class="visually-hidden" for="clientName">Client Name</label>
-            <input type="text" class="form-control" id="clientName" name="client_name" placeholder="Enter Client Name" required>
-          </div>
-          <div class="col-auto">
-            <label class="visually-hidden" for="admissionNumber">Admission Number</label>
-            <input type="text" class="form-control" id="admissionNumber" name="admission_number" placeholder="Enter Admission Number" required>
-          </div>
-          <div class="col-auto">
-            <label class="visually-hidden" for="programTypeSelect">Program Type</label>
-            <select class="form-select" id="programTypeSelect" name="program_type" required>
-              <option selected disabled>Choose Program Type...</option>
-              {% for program_type in program_types %}
-                <option value="{{ program_type.id }}">{{ program_type.name }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="col-auto">
-            <label class="visually-hidden" for="programSelect">Program</label>
-            <select class="form-select" id="programSelect" name="program_id" required>
-              <option selected disabled>Choose Program...</option>
-              {% for program in programs %}
-                <option value="{{ program.id }}">{{ program.title }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Enroll</button>
-          </div>
-        </form>
-      </div>
+    <div class="col-auto mt-3">
+      <button type="submit" class="btn btn-success">Create</button>
     </div>
-
-    <!-- Search Clients -->
-    <div class="card dashboard-card">
-      <div class="card-header">
-        <h3>Search Clients</h3>
-      </div>
-      <div class="card-body">
-        <form action="{{ url_for('doctor.search_client') }}" method="GET">
-          <label for="query">Search by Name or ID</label>
-          <input type="text" name="query" placeholder="Enter client name or ID" required>
-          <button type="submit" class="btn btn-outline-primary">Search</button>
-        </form>
-      </div>
-    </div>
-
-  </div>
+  </form>
 </div>
+
+    <!-- Register New client -->
+    <h3 class="mb-4">Register New Client</h3>
+    <form action="{{ url_for('doctor.register_client') }}" method="POST" class="row g-3">
+      {{ client_form.hidden_tag() }}
+
+      <div class="col-md-4">
+        <label for="first_name" class="form-label">First Name</label>
+        {{ client_form.first_name(class="form-control") }}
+      </div>
+      <div class="col-md-4">
+        <label for="middle_name" class="form-label">Middle Name</label>
+        {{ client_form.middle_name(class="form-control") }}
+      </div>
+      <div class="col-md-4">
+        <label for="sir_name" class="form-label">Sir Name</label>
+        {{ client_form.sir_name(class="form-control") }}
+      </div>
+
+      <div class="col-md-6">
+        <label for="date_of_birth" class="form-label">Date of Birth</label>
+        {{ client_form.date_of_birth(class="form-control") }}
+      </div>
+      <div class="col-md-6">
+        <label for="gender" class="form-label">Gender</label>
+        {{ client_form.gender(class="form-select") }}
+      </div>
+
+      <div class="col-md-6">
+        <label for="national_id" class="form-label">National ID</label>
+        {{ client_form.national_id(class="form-control") }}
+      </div>
+      <div class="col-md-6">
+        <label for="birth_certificate" class="form-label">Birth Certificate</label>
+        {{ client_form.birth_certificate(class="form-control") }}
+      </div>
+
+      <div class="col-md-6">
+        <label for="country" class="form-label">Country</label>
+        {{ client_form.country(class="form-control") }}
+      </div>
+      <div class="col-md-6">
+        <label for="county" class="form-label">County</label>
+        {{ client_form.county(class="form-control") }}
+      </div>
+
+      <div class="col-md-6">
+        <label for="subcounty" class="form-label">Sub-county</label>
+        {{ client_form.subcounty(class="form-control") }}
+      </div>
+      <div class="col-md-6">
+        <label for="village" class="form-label">Village / Locality</label>
+        {{ client_form.village(class="form-control") }}
+      </div>
+
+      <div class="col-md-6">
+        <label for="contact_number" class="form-label">Contact Number</label>
+        {{ client_form.contact_number(class="form-control") }}
+      </div>
+      <div class="col-md-6">
+        <label for="address" class="form-label">Address</label>
+        {{ client_form.address(class="form-control") }}
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn btn-success">Register Client</button>
+      </div>
+    </form>
+
+
+<!-- Enroll Client in Program (Full Width) -->
+<form class="row gy-2 gx-3 align-items-center" method="POST" action="{{ url_for('doctor.enroll_client') }}">
+  <!-- Client Name -->
+  <div class="col-auto">
+    <label class="visually-hidden" for="clientName">Client Name</label>
+    <input type="text" class="form-control" id="clientName" name="client_name" placeholder="Enter Client Name" required>
+  </div>
+
+  <!-- Admission Number -->
+  <div class="col-auto">
+    <label class="visually-hidden" for="admissionNumber">Admission Number</label>
+    <input type="text" class="form-control" id="admissionNumber" name="admission_number" placeholder="Enter Admission Number" required>
+  </div>
+
+  <!-- Program Type -->
+  <div class="col-auto">
+    <label class="visually-hidden" for="programTypeSelect">Program Type</label>
+    <select class="form-select" id="programTypeSelect" name="program_type" required>
+      <option selected disabled>Choose Program Type...</option>
+      {% for program_type in program_types %}
+        <option value="{{ program_type.id }}">{{ program_type.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <!-- Select Program -->
+  <div class="col-auto">
+    <label class="visually-hidden" for="programSelect">Program</label>
+    <select class="form-select" id="programSelect" name="program_id" required>
+      <option selected disabled>Choose Program...</option>
+      {% for program in programs %}
+        <option value="{{ program.id }}">{{ program.title }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <!-- Enroll Button -->
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary">Enroll</button>
+  </div>
+</form>
+
+<!-- Search Clients -->
+    <div class="card">
+      <h3>Search Clients</h3>
+      <form action="{{ url_for('doctor.search_client') }}" method="GET">
+        <label for="query">Search by Name or ID</label>
+        <input type="text" name="query" placeholder="Enter client name or ID" required>
+        <button type="submit" class="btn">Search</button>
+      </form>
+    </div>
 {% endblock %}
+
+
