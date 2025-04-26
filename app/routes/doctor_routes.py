@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import db, Program, Client, Enrollment
 from app.forms import ProgramForm, ClientRegistrationForm, EnrollmentForm
 from functools import wraps
+from app.models import ProgramType
 
 doctor_bp = Blueprint('doctor', __name__, url_prefix='/doctor')
 
