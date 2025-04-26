@@ -37,8 +37,18 @@ class Client(db.Model):
     full_name = db.Column(db.String(100), nullable=False)
     gender = db.Column(db.String(10), nullable=False)
     date_of_birth = db.Column(db.Date, nullable=False)
-    contact_number = db.Column(db.String(20))
-    address = db.Column(db.String(255))
+
+    national_id = db.Column(db.String(20), nullable=True)
+    birth_certificate = db.Column(db.String(20), nullable=True)
+
+    country = db.Column(db.String(50), nullable=False)
+    county = db.Column(db.String(50), nullable=False)
+    subcounty = db.Column(db.String(50), nullable=False)
+    village = db.Column(db.String(100), nullable=False)
+
+    contact_number = db.Column(db.String(100), nullable=False)
+    address = db.Column(db.String(255), nullable=True)
+
     created_by = db.Column(db.Integer, db.ForeignKey('doctors.id'))  # doctor who registered
 
     doctor = db.relationship('Doctor', backref='clients')
