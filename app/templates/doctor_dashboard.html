@@ -99,36 +99,45 @@
 
 
 <!-- Enroll Client in Program (Full Width) -->
-<section class="container-fluid mb-5">
-  <h3 class="mb-3">Enroll Client in Program</h3>
-
-  <form class="row gy-2 gx-3 align-items-center" method="get" action="{{ url_for('doctor.enroll_client', client_id=0) }}">
-    <div class="col-auto">
-      <label class="visually-hidden" for="clientSelect">Client</label>
-      <select class="form-select" id="clientSelect" name="client_id" required>
-        <option selected disabled value="">Choose a client...</option>
-        {% for client in clients %}
-          <option value="{{ client.id }}">{{ client.full_name }}</option>
-        {% endfor %}
-      </select>
-    </div>
-
-    <div class="col-auto">
-      <button type="submit" class="btn btn-success">Enroll</button>
-    </div>
-  </form>
-</section>
-
-    <!-- Search Clients -->
-    <div class="card">
-      <h3>Search Clients</h3>
-      <form action="{{ url_for('doctor.search_client') }}" method="GET">
-        <label for="query">Search by Name or ID</label>
-        <input type="text" name="query" placeholder="Enter client name or ID" required>
-        <button type="submit" class="btn">Search</button>
-      </form>
-    </div>
-
+<form class="row gy-2 gx-3 align-items-center" method="POST" action="{{ url_for('doctor.enroll_client') }}">
+  <!-- Client Name -->
+  <div class="col-auto">
+    <label class="visually-hidden" for="clientName">Client Name</label>
+    <input type="text" class="form-control" id="clientName" name="client_name" placeholder="Enter Client Name" required>
   </div>
-</div>
+
+  <!-- Admission Number -->
+  <div class="col-auto">
+    <label class="visually-hidden" for="admissionNumber">Admission Number</label>
+    <input type="text" class="form-control" id="admissionNumber" name="admission_number" placeholder="Enter Admission Number" required>
+  </div>
+
+  <!-- Program Type -->
+  <div class="col-auto">
+    <label class="visually-hidden" for="programTypeSelect">Program Type</label>
+    <select class="form-select" id="programTypeSelect" name="program_type" required>
+      <option selected disabled>Choose Program Type...</option>
+      {% for program_type in program_types %}
+        <option value="{{ program_type.id }}">{{ program_type.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <!-- Select Program -->
+  <div class="col-auto">
+    <label class="visually-hidden" for="programSelect">Program</label>
+    <select class="form-select" id="programSelect" name="program_id" required>
+      <option selected disabled>Choose Program...</option>
+      {% for program in programs %}
+        <option value="{{ program.id }}">{{ program.title }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <!-- Enroll Button -->
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary">Enroll</button>
+  </div>
+</form>
+
 {% endblock %}
