@@ -23,21 +23,28 @@
     <p><strong>Village:</strong> {{ client.village }}</p>
   </div>
 
-  <div class="enrollments-section">
-    <h3>Enrolled Programs</h3>
-    {% if client.enrollments %}
-      <ul class="enrollment-list">
-        {% for enrollment in client.enrollments %}
-          <li>
-            <strong>{{ enrollment.program.title }}</strong> – {{ enrollment.program.description }}
-            <br>
-            <em>Enrolled on: {{ enrollment.date_enrolled.strftime('%Y-%m-%d') }}</em>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>No enrollments found for this client.</p>
-    {% endif %}
-  </div>
+ <div class="enrollments-section">
+  <h3>Enrolled Programs</h3>
+  {% if client.enrollments %}
+    <ul class="enrollment-list">
+      {% for enrollment in client.enrollments %}
+        <li>
+          <strong>{{ enrollment.program.title }}</strong>
+          <br>
+          <em>Type:</em> {{ enrollment.program.program_type.name }}
+          <br>
+          <em>Description:</em> {{ enrollment.program.description }}
+          <br>
+          <em>Admission No:</em> {{ client.admission_number }}
+          <br>
+          <em>Enrolled on:</em> {{ enrollment.enrollment_date.strftime('%Y-%m-%d') }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No enrollments found for this client.</p>
+  {% endif %}
+</div>
+
 </div>
 {% endblock %}
