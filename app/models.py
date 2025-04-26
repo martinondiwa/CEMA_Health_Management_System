@@ -1,10 +1,6 @@
-# app/models.py
-
-from flask_sqlalchemy import SQLAlchemy
+from app.extensions import db  
 from flask_login import UserMixin
 from datetime import datetime
-
-db = SQLAlchemy()
 
 # User model for authentication (admin/doctor login)
 class User(UserMixin, db.Model):
