@@ -27,21 +27,55 @@
     </div>
 
     <!-- Register Client -->
-    <div class="card">
-      <h3>Register New Client</h3>
-      <form action="{{ url_for('doctor.register_client') }}" method="POST">
-        {{ client_form.hidden_tag() }}
-        <label for="name">Full Name</label>
-        {{ client_form.name }}
-        <label for="dob">Date of Birth</label>
-        {{ client_form.dob }}
-        <label for="gender">Gender</label>
-        {{ client_form.gender }}
-        <label for="contact">Contact Info</label>
-        {{ client_form.contact }}
-        <button type="submit" class="btn">Register</button>
-      </form>
-    </div>
+ <!-- Register Client -->
+<div class="card">
+  <h3>Register New Client</h3>
+  <form action="{{ url_for('doctor.register_client') }}" method="POST">
+    {{ client_form.hidden_tag() }}
+
+    <label for="first_name">First Name</label>
+    {{ client_form.first_name }}
+
+    <label for="middle_name">Middle Name</label>
+    {{ client_form.middle_name }}
+
+    <label for="sir_name">Sir Name</label>
+    {{ client_form.sir_name }}
+
+    <label for="date_of_birth">Date of Birth</label>
+    {{ client_form.date_of_birth }}
+
+    <label for="gender">Gender</label>
+    {{ client_form.gender }}
+
+    <label for="national_id">National ID (optional)</label>
+    {{ client_form.national_id }}
+
+    <label for="birth_certificate">Birth Certificate (optional)</label>
+    {{ client_form.birth_certificate }}
+
+    <label for="country">Country</label>
+    {{ client_form.country }}
+
+    <label for="county">County</label>
+    {{ client_form.county }}
+
+    <label for="subcounty">Sub-county</label>
+    {{ client_form.subcounty }}
+
+    <label for="village">Village / Locality</label>
+    {{ client_form.village }}
+
+    <label for="contact_number">Contact Number</label>
+    {{ client_form.contact_number }}
+
+    <label for="address">Address (optional)</label>
+    {{ client_form.address }}
+
+    <button type="submit" class="btn">Register</button>
+  </form>
+</div>
+
 
     <!-- Enroll Client -->
     <div class="card">
