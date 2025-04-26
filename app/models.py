@@ -68,6 +68,16 @@ class Program(db.Model):
     def __repr__(self):
         return f"<Program {self.title}>"
 
+class ProgramType(db.Model):
+    __tablename__ = 'program_types'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False, unique=True)
+
+    def __repr__(self):
+        return f"<ProgramType {self.name}>"
+
+
 # Enrollment model (links Client to a Program)
 class Enrollment(db.Model):
     __tablename__ = 'enrollments'
