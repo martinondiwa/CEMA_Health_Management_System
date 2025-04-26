@@ -42,14 +42,25 @@
     <!-- Enroll Client -->
     <div class="card">
       <h3>Enroll Client in Program</h3>
-      <form action="{{ url_for('doctor.enroll_client') }}" method="POST">
-        {{ enrollment_form.hidden_tag() }}
-        <label for="client_id">Client</label>
-        {{ enrollment_form.client_id }}
-        <label for="program_id">Program</label>
-        {{ enrollment_form.program_id }}
-        <button type="submit" class="btn">Enroll</button>
-      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Client Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for client in clients %}
+          <tr>
+            <td>{{ client.name }}</td>
+            <td>
+              <!-- Create a link for enrolling this client in a program -->
+              <a href="{{ url_for('doctor.enroll_client', client_id=client.id) }}" class="btn">Enroll</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
 
     <!-- Search Clients -->
