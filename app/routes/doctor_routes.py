@@ -43,13 +43,22 @@ def dashboard():
 @doctor_required
 def create_program():
     form = ProgramForm()
-    form.type_id.choices = [(pt.id, pt.name) for pt in ProgramType.query.all()]
 
     if form.validate_on_submit():
+        program_type_name = form.type.data.strip()
+
+        # Check if type already exists, else create new
+        program_type = ProgramType.query.filter_by(name=program_type_name).first()
+        if not program_type:
+            program_type = ProgramType(name=program_type_name)
+            db.session.add(program_type)
+            db.session.commit()
+
+        # Now create the Program with this program_type
         new_program = Program(
             title=form.name.data,
             description=form.description.data,
-            type_id=form.type_id.data
+            program_type=program_type
         )
         db.session.add(new_program)
         db.session.commit()
@@ -57,6 +66,7 @@ def create_program():
         return redirect(url_for('doctor.dashboard'))
 
     return render_template('create_program.html', form=form)
+
 
 # 3. Register a New Client
 @doctor_bp.route('/client/register', methods=['GET', 'POST'])
