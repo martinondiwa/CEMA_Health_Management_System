@@ -3,6 +3,10 @@
 
 {% block title %}Login{% endblock %}
 
+{% block forms_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="auth-container">
   <h2>Login</h2>
