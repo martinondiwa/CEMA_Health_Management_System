@@ -3,6 +3,9 @@
 
 {% block title %}Doctor Dashboard{% endblock %}
 
+{% block extra_styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
 
 {% block content %}
 <div class="dashboard-container">
