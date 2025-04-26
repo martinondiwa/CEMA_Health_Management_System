@@ -13,7 +13,7 @@ class LoginForm(FlaskForm):
 
 # Registration form for doctors/admins (only admin can access)
 class RegistrationForm(FlaskForm):
-    full_name = StringField('Full Name', validators=[DataRequired()])
+    name = StringField('Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     phone = StringField('Phone')
     department = StringField('Department')
