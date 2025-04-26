@@ -28,6 +28,8 @@ def login():
 # 2. Register Route (for doctor/admin only)
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
+    form = RegistrationForm()
+    
    if form.validate_on_submit():
     existing_user = User.query.filter_by(email=form.email.data).first()
     if existing_user:
