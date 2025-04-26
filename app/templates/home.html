@@ -1,0 +1,17 @@
+<!-- app/templates/home.html -->
+{% extends "base.html" %}
+
+{% block title %}Welcome to CEMA Health Management System{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <h1>Welcome to the CEMA Health Management System</h1>
+    <p>Efficiently manage health programs, clients, and enrollments all in one place.</p>
+    <div class="action-buttons">
+      <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Doctor Login</a>
+      <a href="{{ url_for('auth.register') }}" class="btn btn-outline">Doctor Register</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
