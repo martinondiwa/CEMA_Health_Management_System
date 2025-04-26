@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from config import Config
+from app.routes import register_routes
 
 # Extensions
 db = SQLAlchemy()
@@ -39,5 +40,6 @@ def create_app(config_class=Config):
     app.register_blueprint(doctor_bp, url_prefix='/doctor')
     app.register_blueprint(client_bp, url_prefix='/clients')
     app.register_blueprint(api_bp, url_prefix='/api')
-
+    
+    register_routes(app)
     return app
