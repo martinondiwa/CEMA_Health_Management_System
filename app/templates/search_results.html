@@ -1,0 +1,35 @@
+<!-- app/templates/search_results.html -->
+{% extends "base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<div class="search-results-container">
+  <h2>Search Results for "{{ query }}"</h2>
+
+  {% if clients %}
+  <table>
+    <thead>
+      <tr>
+        <th>Client Name</th>
+        <th>Client ID</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for client in clients %}
+      <tr>
+        <td>{{ client.name }}</td>
+        <td>{{ client.id }}</td>
+        <td>
+          <a href="{{ url_for('doctor.view_client', client_id=client.id) }}" class="btn">View Profile</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No clients found matching "{{ query }}".</p>
+  {% endif %}
+</div>
+{% endblock %}
