@@ -1,4 +1,3 @@
-
 <!-- app/templates/client_profile.html -->
 {% extends "base.html" %}
 
@@ -13,10 +12,15 @@
   <h2>Client Profile</h2>
 
   <div class="profile-card">
-    <h3>{{ client.name }}</h3>
-    <p><strong>Date of Birth:</strong> {{ client.dob.strftime('%Y-%m-%d') }}</p>
+    <h3>{{ client.full_name }}</h3>
+    <p><strong>Date of Birth:</strong> {{ client.date_of_birth.strftime('%Y-%m-%d') }}</p>
     <p><strong>Gender:</strong> {{ client.gender }}</p>
-    <p><strong>Contact Info:</strong> {{ client.contact }}</p>
+    <p><strong>Contact Info:</strong> {{ client.contact_number }}</p>
+    <p><strong>Address:</strong> {{ client.address }}</p>
+    <p><strong>Country:</strong> {{ client.country }}</p>
+    <p><strong>County:</strong> {{ client.county }}</p>
+    <p><strong>Sub-county:</strong> {{ client.subcounty }}</p>
+    <p><strong>Village:</strong> {{ client.village }}</p>
   </div>
 
   <div class="enrollments-section">
@@ -25,7 +29,7 @@
       <ul class="enrollment-list">
         {% for enrollment in client.enrollments %}
           <li>
-            <strong>{{ enrollment.program.name }}</strong> – {{ enrollment.program.description }}
+            <strong>{{ enrollment.program.title }}</strong> – {{ enrollment.program.description }}
             <br>
             <em>Enrolled on: {{ enrollment.date_enrolled.strftime('%Y-%m-%d') }}</em>
           </li>
@@ -37,4 +41,3 @@
   </div>
 </div>
 {% endblock %}
-
