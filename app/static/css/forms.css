@@ -1,1 +1,81 @@
 
+/* Container for the entire form section */
+.auth-container {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* Headings */
+.auth-container h2 {
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Form groups and inputs */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  border-radius: 0.3rem;
+  padding: 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+  background-color: #fff;
+}
+
+/* Form labels */
+label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Error message styles */
+.form-error {
+  color: red;
+  font-size: 0.875rem;
+}
+
+/* Submit button */
+.btn-success {
+  background-color: #ffc107;
+  border: none;
+  color: #000;
+  font-weight: 600;
+  padding: 10px 24px;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+  background-color: #e0a800;
+  color: #000;
+}
+
+/* Link below the form */
+.auth-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.auth-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.auth-link a:hover {
+  text-decoration: underline;
+}
