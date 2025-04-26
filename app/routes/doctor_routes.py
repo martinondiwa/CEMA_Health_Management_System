@@ -145,7 +145,7 @@ def search_client():
     query = request.args.get('query')
     if query:
         clients = Client.query.filter(
-            (Client.full_name.ilike(f'%{query}%')) | (Client.id.ilike(f'%{query}%'))  # ✅ Corrected 'name' to 'full_name'
+            (Client.full_name.ilike(f'%{query}%')) | (Client.id.ilike(f'%{query}%'))  
         ).all()
     else:
         clients = []
