@@ -22,6 +22,7 @@ def create_app(config_class=Config):
     from app.routes.doctor_routes import doctor_bp
     from app.routes.client_routes import client_bp
     from app.routes.api import api_bp
+    from app.routes.index_routes import index_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(doctor_bp, url_prefix='/doctor')
