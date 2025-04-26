@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from app.models import db, Program, Client, Enrollment
-from app.forms import ProgramForm, ClientForm  # Assuming you have these forms for creating programs and clients
+from app.forms import ProgramForm, ClientForm, EnrollmentForm
 from functools import wraps
 
 doctor_bp = Blueprint('doctor', __name__, url_prefix='/doctor')
