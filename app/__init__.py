@@ -1,21 +1,8 @@
-# app/__init__.py
-
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from flask_login import LoginManager
-from flask_bcrypt import Bcrypt
 from config import Config
-from app.routes import register_routes
 
-# Extensions
-db = SQLAlchemy()
-migrate = Migrate()
-login_manager = LoginManager()
-bcrypt = Bcrypt()
-
-login_manager.login_view = 'auth.login'
-login_manager.login_message_category = 'info'
+# Import extensions from the new module
+from app.extensions import db, migrate, login_manager, bcrypt
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -27,10 +14,10 @@ def create_app(config_class=Config):
     login_manager.init_app(app)
     bcrypt.init_app(app)
 
-    # Import models so migrations can detect them
+    # Import models for migrations
     from app import models
 
-    # Register Blueprints
+    # Register blueprints AFTER extensions are initialized
     from app.routes.auth_routes import auth_bp
     from app.routes.doctor_routes import doctor_bp
     from app.routes.client_routes import client_bp
@@ -40,7 +27,5 @@ def create_app(config_class=Config):
     app.register_blueprint(doctor_bp, url_prefix='/doctor')
     app.register_blueprint(client_bp, url_prefix='/clients')
     app.register_blueprint(api_bp, url_prefix='/api')
-    app.config.from_pyfile('config.py', silent=True)
 
-    register_routes(app)
     return app
