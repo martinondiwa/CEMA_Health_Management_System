@@ -3,6 +3,7 @@ from config import Config
 
 # Import extensions from the new module
 from app.extensions import db, migrate, login_manager, bcrypt
+from app.models import User
 
 def create_app(config_class=Config):
     app = Flask(__name__)
