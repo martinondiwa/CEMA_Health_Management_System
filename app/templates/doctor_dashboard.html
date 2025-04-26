@@ -16,17 +16,33 @@
   <div class="dashboard-sections">
 
     <!-- Create Program -->
-    <div class="card">
-      <h3>Create Program</h3>
-      <form action="{{ url_for('doctor.create_program') }}" method="POST">
-        {{ program_form.hidden_tag() }}
-        <label for="name">Program Name</label>
-        {{ program_form.name }}
-        <label for="description">Description</label>
-        {{ program_form.description }}
-        <button type="submit" class="btn">Create</button>
-      </form>
+   <!-- Create Program -->
+<div class="container-fluid my-4">
+  <h3>Create Program</h3>
+  <form action="{{ url_for('doctor.create_program') }}" method="POST" class="row gy-2 gx-3 align-items-center">
+    {{ program_form.hidden_tag() }}
+
+    <div class="col-md-4">
+      <label for="type_id" class="form-label">Program Type</label>
+      {{ program_form.type_id(class="form-select") }}
     </div>
+
+    <div class="col-md-4">
+      <label for="name" class="form-label">Program Name</label>
+      {{ program_form.name(class="form-control") }}
+    </div>
+
+    <div class="col-md-12">
+      <label for="description" class="form-label">Program Description</label>
+      {{ program_form.description(class="form-control") }}
+    </div>
+
+    <div class="col-auto mt-3">
+      <button type="submit" class="btn btn-success">Create</button>
+    </div>
+  </form>
+</div>
+
 
 
     <!-- Register New client -->
