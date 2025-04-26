@@ -1,0 +1,51 @@
+<!-- app/templates/auth/register.html -->
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+  <h2>Doctor/Admin Registration</h2>
+  <form method="POST" action="{{ url_for('auth.register') }}">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+      {{ form.name.label }}<br>
+      {{ form.name(class_='form-control') }}
+      {% for error in form.name.errors %}
+        <span class="form-error">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.email.label }}<br>
+      {{ form.email(class_='form-control') }}
+      {% for error in form.email.errors %}
+        <span class="form-error">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.password.label }}<br>
+      {{ form.password(class_='form-control') }}
+      {% for error in form.password.errors %}
+        <span class="form-error">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.confirm_password.label }}<br>
+      {{ form.confirm_password(class_='form-control') }}
+      {% for error in form.confirm_password.errors %}
+        <span class="form-error">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.submit(class_='btn btn-success') }}
+    </div>
+
+    <p class="auth-link">Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></p>
+  </form>
+</div>
+{% endblock %}
