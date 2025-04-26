@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Register New Client{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register_client.css') }}">
+
+<div class="form-container">
+    <h2>Register New Client</h2>
+    <form method="POST" action="{{ url_for('doctor.register_client') }}">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            {{ form.first_name(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="middle_name">Middle Name</label>
+            {{ form.middle_name(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="sir_name">Sir Name</label>
+            {{ form.sir_name(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            {{ form.dob(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            {{ form.gender(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="national_id">National ID</label>
+            {{ form.national_id(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="birth_certificate">Birth Certificate No.</label>
+            {{ form.birth_certificate(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country</label>
+            {{ form.country(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="county">County</label>
+            {{ form.county(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="subcounty">Sub-county</label>
+            {{ form.subcounty(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="village">Village / Locality</label>
+            {{ form.village(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="contact">Contact Info</label>
+            {{ form.contact(class="form-control") }}
+        </div>
+
+        <button type="submit" class="btn-submit">Register Client</button>
+    </form>
+</div>
+{% endblock %}
