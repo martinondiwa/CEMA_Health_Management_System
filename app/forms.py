@@ -62,6 +62,8 @@ class ClientForm(FlaskForm):
 
 # Form to enroll client into a program
 class EnrollmentForm(FlaskForm):
-    client_id = IntegerField('Client ID', validators=[DataRequired()])
-    program_id = IntegerField('Program ID', validators=[DataRequired()])
-    submit = SubmitField('Enroll Client')
+    client_admission_number = StringField("Admission Number", validators=[DataRequired(), Length(max=50)])
+    client_name = StringField("Client Name", validators=[DataRequired(), Length(max=100)])
+    program_type_id = SelectField("Program Type", coerce=int, validators=[DataRequired()])
+    program_id = SelectField("Program", coerce=int, validators=[DataRequired()])
+    submit = SubmitField("Enroll Client")
