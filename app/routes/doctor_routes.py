@@ -7,13 +7,13 @@ doctor_bp = Blueprint('doctor', __name__, url_prefix='/doctor')
 
 # Ensure only logged-in doctors can access these routes
 def doctor_required(func):
+    @wraps(func)
     @login_required
     def wrapper(*args, **kwargs):
-       if current_user.is_admin:
-           flash("Unauthorized access.", "danger")
-           return redirect(url_for('auth.login'))
-           return func(*args, **kwargs)
-    wrapper.__name__ = func.__name__
+        if current_user.is_admin:
+            flash("Unauthorized access.", "danger")
+            return redirect(url_for('auth.login'))
+        return func(*args, **kwargs)
     return wrapper
 
 # 1. Doctor's Dashboard (View Programs and Clients)
