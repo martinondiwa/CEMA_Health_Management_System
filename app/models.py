@@ -73,12 +73,20 @@ class Enrollment(db.Model):
     __tablename__ = 'enrollments'
 
     id = db.Column(db.Integer, primary_key=True)
-    client_id = db.Column(db.Integer, db.ForeignKey('clients.id'))
-    program_id = db.Column(db.Integer, db.ForeignKey('programs.id'))
+
+    # New Fields
+    client_name = db.Column(db.String(100), nullable=False)
+    admission_number = db.Column(db.String(50), nullable=False)
+
+    # Foreign Keys
+    program_id = db.Column(db.Integer, db.ForeignKey('programs.id'), nullable=False)
+    program_type_id = db.Column(db.Integer, db.ForeignKey('program_types.id'), nullable=False)
+
     enrollment_date = db.Column(db.DateTime, default=datetime.utcnow)
 
-    client = db.relationship('Client', backref='enrollments')
+    # Relationships
     program = db.relationship('Program', backref='enrollments')
+    program_type = db.relationship('ProgramType', backref='enrollments')
 
     def __repr__(self):
-        return f"<Enrollment Client: {self.client_id}, Program: {self.program_id}>"
+        return f"<Enrollment {self.client_name} | Program: {self.program.title}>"
