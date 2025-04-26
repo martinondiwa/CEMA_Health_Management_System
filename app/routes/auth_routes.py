@@ -39,7 +39,7 @@ def register():
             return redirect(url_for('auth.register'))  # Redirect back to registration form if email exists
 
         # Create a new user (doctor/admin)
-        hashed_password = generate_password_hash(form.password.data, method='sha256')  # Hash password before storing
+        hashed_password = generate_password_hash(form.password.data, method='pbkdf2:sha256')
         new_user = User(
             username=form.username.data,
             email=form.email.data,
