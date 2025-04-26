@@ -22,10 +22,10 @@
   <form action="{{ url_for('doctor.create_program') }}" method="POST" class="row gy-2 gx-3 align-items-center">
     {{ program_form.hidden_tag() }}
 
-    <div class="col-md-4">
-      <label for="type_id" class="form-label">Program Type</label>
-      {{ program_form.type_id(class="form-select") }}
-    </div>
+   <div class="col-md-4">
+  <label for="type" class="form-label">Program Type</label>
+  <input type="text" name="type" class="form-control" placeholder="Enter Program Type">
+   </div>
 
     <div class="col-md-4">
       <label for="name" class="form-label">Program Name</label>
