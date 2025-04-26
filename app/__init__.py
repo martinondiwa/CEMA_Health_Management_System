@@ -40,6 +40,7 @@ def create_app(config_class=Config):
     app.register_blueprint(doctor_bp, url_prefix='/doctor')
     app.register_blueprint(client_bp, url_prefix='/clients')
     app.register_blueprint(api_bp, url_prefix='/api')
-    
+    app.config.from_pyfile('config.py', silent=True)
+
     register_routes(app)
     return app
