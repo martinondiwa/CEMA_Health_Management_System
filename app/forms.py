@@ -36,7 +36,11 @@ class ProgramForm(FlaskForm):
     title = StringField('Program Title', validators=[DataRequired()])
     description = TextAreaField('Description')
     submit = SubmitField('Create Program')
-
+class ClientForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Submit')
+    
 # Form to enroll client into a program
 class EnrollmentForm(FlaskForm):
     client_id = IntegerField('Client ID', validators=[DataRequired()])
