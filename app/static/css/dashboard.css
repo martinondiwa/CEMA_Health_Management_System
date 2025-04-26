@@ -32,27 +32,27 @@ form {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;  /* Added border for separation */
 }
 
-label.form-label {
-    font-weight: bold;
-}
-
+/* Form Field Boxes (Greish/Dark Brownish) */
 input.form-control,
 select.form-select,
 textarea.form-control {
     border-radius: 8px;
-    border: 1px solid #ddd;
     padding: 12px;
     width: 100%;
     margin-top: 8px;
+    background-color: #f7f7f7;  /* Light grayish background */
+    border: 1px solid #b6b6b6;  /* Dark brownish border */
 }
 
+/* Focus Effect on Form Fields */
 input.form-control:focus,
 select.form-select:focus,
 textarea.form-control:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    border-color: #8b5e3c;  /* Dark brownish focus color */
+    box-shadow: 0 0 5px rgba(139, 94, 60, 0.25); /* Subtle shadow effect */
 }
 
 /* Button Styles */
@@ -62,10 +62,6 @@ button.btn {
     color: white;
     font-weight: bold;
     transition: background-color 0.3s, transform 0.2s ease;
-}
-
-button.btn:hover {
-    transform: scale(1.05);
 }
 
 /* Success Button */
@@ -106,6 +102,7 @@ input[type="text"][name="query"] {
     margin-top: 8px;
     border-radius: 8px;
     border: 1px solid #ddd;
+    background-color: #f7f7f7;  /* Light grayish background */
 }
 
 /* Form Layout Adjustments */
@@ -164,6 +161,7 @@ form .col-md-6 {
     margin-top: 8px;
     border-radius: 8px;
     border: 1px solid #ddd;
+    background-color: #f7f7f7; /* Light grayish background */
 }
 
 .card button.btn {
