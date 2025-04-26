@@ -4,6 +4,7 @@ from app.models import db, Program, Client, Enrollment
 from app.forms import ProgramForm, ClientForm, EnrollmentForm
 from functools import wraps
 
+
 doctor_bp = Blueprint('doctor', __name__, url_prefix='/doctor')
 
 # Ensure only logged-in doctors can access these routes
@@ -21,6 +22,7 @@ def doctor_required(func):
 @doctor_bp.route('/dashboard')
 @doctor_required
 def dashboard():
+    client_form = ClientForm()
     programs = Program.query.all()
     clients = Client.query.all()
     program_form = ProgramForm()
