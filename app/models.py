@@ -57,6 +57,7 @@ class Client(db.Model):
         return f"<Client {self.full_name}>"
 
 # Health Program model
+
 class Program(db.Model):
     __tablename__ = 'programs'
 
@@ -65,18 +66,11 @@ class Program(db.Model):
     description = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+    type_id = db.Column(db.Integer, db.ForeignKey('program_types.id'), nullable=False)
+    type = db.relationship('ProgramType', backref=db.backref('programs', lazy=True))
+
     def __repr__(self):
         return f"<Program {self.title}>"
-
-class ProgramType(db.Model):
-    __tablename__ = 'program_types'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False, unique=True)
-
-    def __repr__(self):
-        return f"<ProgramType {self.name}>"
-
 
 # Enrollment model (links Client to a Program)
 class Enrollment(db.Model):
