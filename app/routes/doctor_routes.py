@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from app.models import db, Program, Client, Enrollment
-from app.forms import ProgramForm, ClientForm, EnrollmentForm
+from app.forms import ProgramForm, ClientRegistrationForm, EnrollmentForm  # Use the correct form
 from functools import wraps
 
 doctor_bp = Blueprint('doctor', __name__, url_prefix='/doctor')
@@ -25,7 +25,7 @@ def dashboard():
     programs = Program.query.all()
     clients = Client.query.all()
     program_form = ProgramForm()
-    client_form = ClientForm()
+    client_form = ClientRegistrationForm()  # Corrected form usage
     enrollment_form = EnrollmentForm()
 
     return render_template(
@@ -33,7 +33,7 @@ def dashboard():
         programs=programs,
         clients=clients,
         program_form=program_form,
-        client_form=client_form,
+        client_form=client_form,  # Pass the correct form here
         enrollment_form=enrollment_form
     )
 
@@ -60,7 +60,7 @@ def create_program():
 @doctor_bp.route('/client/register', methods=['GET', 'POST'])
 @doctor_required
 def register_client():
-    form = ClientForm()
+    form = ClientRegistrationForm()  # Corrected form usage
     if form.validate_on_submit():
         full_name = " ".join(filter(None, [form.first_name.data, form.middle_name.data, form.sir_name.data]))
         new_client = Client(
