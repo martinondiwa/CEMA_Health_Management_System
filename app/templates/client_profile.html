@@ -4,6 +4,10 @@
 
 {% block title %}Client Profile{% endblock %}
 
+{% block client_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="client-profile-container">
   <h2>Client Profile</h2>
