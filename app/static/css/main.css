@@ -5,14 +5,21 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
     margin: 0;
+    transition: opacity 0.5s ease-in-out; /* Smooth transition for fade-in effect */
 }
 
-a {
-    text-decoration: none;
+body.fade-in {
+    opacity: 0;
 }
 
-.container {
-    margin-top: 30px;
+/* Ensure the footer sticks at the bottom */
+html, body {
+    height: 100%;
+}
+
+main {
+    min-height: calc(100vh - 120px); /* Ensure content takes up available space */
+    padding-bottom: 100px; /* Space for the footer */
 }
 
 /* Header Styles */
@@ -20,6 +27,9 @@ header {
     background-color: #007bff;
     color: white;
     padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 header h1 {
@@ -50,18 +60,18 @@ footer {
     color: white;
     text-align: center;
     padding: 15px;
-    margin-top: 30px;
-}
-
-footer p {
-    margin: 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 /* Hero Section Styles */
 .hero {
-    background: #f9f9f9;
+    background: url('your-image.jpg') no-repeat center center fixed;
+    background-size: cover;
     padding: 60px 20px;
     text-align: center;
+    color: white;
 }
 
 .hero h1 {
@@ -94,4 +104,33 @@ footer p {
     color: #007bff;
 }
 
-/* Smooth Transition (no CSS needed for transition itself) */
+/* Smooth Fade Transition for Button Hover */
+nav a,
+.btn {
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+nav a:hover,
+.btn:hover {
+    transform: scale(1.1); /* Slightly enlarge buttons and links on hover */
+    background-color: #0056b3; /* Change the background on hover */
+    color: white;
+}
+
+/* Footer Animation */
+footer p {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Keyframe Animation for Fade In Effect */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Smooth transition for page loading */
+body {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
