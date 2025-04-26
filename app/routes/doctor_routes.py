@@ -9,10 +9,10 @@ doctor_bp = Blueprint('doctor', __name__, url_prefix='/doctor')
 def doctor_required(func):
     @login_required
     def wrapper(*args, **kwargs):
-        if current_user.role != 'doctor':  # Check if the logged-in user is a doctor
-            flash("Unauthorized access.", "danger")
-            return redirect(url_for('auth.login'))
-        return func(*args, **kwargs)
+       if current_user.is_admin:
+           flash("Unauthorized access.", "danger")
+           return redirect(url_for('auth.login'))
+           return func(*args, **kwargs)
     wrapper.__name__ = func.__name__
     return wrapper
 
