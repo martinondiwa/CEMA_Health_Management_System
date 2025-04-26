@@ -79,3 +79,9 @@
     </form>
 </div>
 {% endblock %}
+
+{% for field, errors in form.errors.items() %}
+    <div class="alert alert-danger">
+        {{ field }}: {{ errors|join(', ') }}
+    </div>
+{% endfor %}
