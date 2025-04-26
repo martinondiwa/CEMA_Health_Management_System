@@ -28,30 +28,33 @@ def login():
 # 2. Register Route (for doctor/admin only)
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('doctor.view_dashboard'))  # Redirect to dashboard if already logged in
+   if form.validate_on_submit():
+    existing_user = User.query.filter_by(email=form.email.data).first()
+    if existing_user:
+        flash('Email already registered. Please log in.', 'danger')
+        return redirect(url_for('auth.login'))
 
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        existing_user = User.query.filter_by(email=form.email.data).first()
-        if existing_user:
-            flash('Email already registered. Please use a different email.', 'danger')
-            return redirect(url_for('auth.register'))  # Redirect back to registration form if email exists
+    hashed_password = generate_password_hash(form.password.data, method='pbkdf2:sha256')
 
-        # Create a new user (doctor/admin)
-        hashed_password = generate_password_hash(form.password.data, method='pbkdf2:sha256')
-        new_user = User(
-            username=form.username.data,
-            email=form.email.data,
-            password=hashed_password,
-            role='doctor' if form.role.data == 'doctor' else 'admin'  # Role selection (doctor or admin)
-        )
-        db.session.add(new_user)
-        db.session.commit()
+    new_user = User(
+        email=form.email.data,
+        password_hash=hashed_password,
+        is_admin=form.is_admin.data
+    )
+    db.session.add(new_user)
+    db.session.commit()
 
-        flash('Account created successfully! You can now log in.', 'success')
-        return redirect(url_for('auth.login'))  # Redirect to login page after successful registration
-    return render_template('auth/register.html', form=form)
+    new_doctor = Doctor(
+        user_id=new_user.id,
+        full_name=form.name.data,
+        phone=form.phone.data,
+        department=form.department.data
+    )
+    db.session.add(new_doctor)
+    db.session.commit()
+
+    flash('Registration successful! Please log in.', 'success')
+    return redirect(url_for('auth.login')) 
 
 # 3. Logout Route
 @auth_bp.route('/logout')
