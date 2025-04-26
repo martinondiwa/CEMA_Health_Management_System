@@ -56,8 +56,20 @@ class Client(db.Model):
     def __repr__(self):
         return f"<Client {self.full_name}>"
 
-# Health Program model
+# ProgramType model
+class ProgramType(db.Model):
+    __tablename__ = 'program_types'
 
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False, unique=True)
+
+    programs = db.relationship('Program', back_populates='program_type')
+    enrollments = db.relationship('Enrollment', back_populates='program_type')
+
+    def __repr__(self):
+        return f"<ProgramType {self.name}>"
+
+# Program model
 class Program(db.Model):
     __tablename__ = 'programs'
 
@@ -67,30 +79,27 @@ class Program(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     type_id = db.Column(db.Integer, db.ForeignKey('program_types.id'), nullable=False)
-    type = db.relationship('ProgramType', backref=db.backref('programs', lazy=True))
+    program_type = db.relationship('ProgramType', back_populates='programs')
+    enrollments = db.relationship('Enrollment', back_populates='program')
 
     def __repr__(self):
         return f"<Program {self.title}>"
 
-# Enrollment model (links Client to a Program)
+# Enrollment model
 class Enrollment(db.Model):
     __tablename__ = 'enrollments'
 
     id = db.Column(db.Integer, primary_key=True)
-
-    # New Fields
     client_name = db.Column(db.String(100), nullable=False)
     admission_number = db.Column(db.String(50), nullable=False)
 
-    # Foreign Keys
     program_id = db.Column(db.Integer, db.ForeignKey('programs.id'), nullable=False)
     program_type_id = db.Column(db.Integer, db.ForeignKey('program_types.id'), nullable=False)
 
     enrollment_date = db.Column(db.DateTime, default=datetime.utcnow)
 
-    # Relationships
-    program = db.relationship('Program', backref='enrollments')
-    program_type = db.relationship('ProgramType', backref='enrollments')
+    program = db.relationship('Program', back_populates='enrollments')
+    program_type = db.relationship('ProgramType', back_populates='enrollments')
 
     def __repr__(self):
         return f"<Enrollment {self.client_name} | Program: {self.program.title}>"
