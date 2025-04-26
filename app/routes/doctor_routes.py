@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from app.models import db, Program, Client, Enrollment
-from app.forms import ProgramForm, ClientRegistrationForm, EnrollmentForm  # Use the correct form
+from app.forms import ProgramForm, ClientRegistrationForm, EnrollmentForm
 from functools import wraps
 
 doctor_bp = Blueprint('doctor', __name__, url_prefix='/doctor')
@@ -18,14 +18,14 @@ def doctor_required(func):
     return wrapper
 
 
-# 1. Doctor's Dashboard (View Programs and Clients)
+# 1. Doctor's Dashboard
 @doctor_bp.route('/dashboard')
 @doctor_required
 def dashboard():
     programs = Program.query.all()
     clients = Client.query.all()
     program_form = ProgramForm()
-    client_form = ClientRegistrationForm()  # Corrected form usage
+    client_form = ClientRegistrationForm()
     enrollment_form = EnrollmentForm()
 
     return render_template(
@@ -33,7 +33,7 @@ def dashboard():
         programs=programs,
         clients=clients,
         program_form=program_form,
-        client_form=client_form,  # Pass the correct form here
+        client_form=client_form,
         enrollment_form=enrollment_form
     )
 
@@ -45,9 +45,8 @@ def create_program():
     form = ProgramForm()
     if form.validate_on_submit():
         new_program = Program(
-            name=form.name.data,
-            description=form.description.data,
-            created_by=current_user.id
+            title=form.name.data,  # ❗ 'title' instead of 'name' (models.py uses `title`)
+            description=form.description.data
         )
         db.session.add(new_program)
         db.session.commit()
@@ -60,22 +59,16 @@ def create_program():
 @doctor_bp.route('/client/register', methods=['GET', 'POST'])
 @doctor_required
 def register_client():
-    form = ClientRegistrationForm()  # Corrected form usage
+    form = ClientRegistrationForm()
     if form.validate_on_submit():
         full_name = " ".join(filter(None, [form.first_name.data, form.middle_name.data, form.sir_name.data]))
         new_client = Client(
-            name=full_name,
-            date_of_birth=form.date_of_birth.data,
+            full_name=full_name,  # ✅ Corrected from 'name' to 'full_name'
             gender=form.gender.data,
-            national_id=form.national_id.data,
-            birth_certificate=form.birth_certificate.data,
-            country=form.country.data,
-            county=form.county.data,
-            subcounty=form.subcounty.data,
-            village=form.village.data,
+            date_of_birth=form.date_of_birth.data,
             contact_number=form.contact_number.data,
             address=form.address.data,
-            assigned_doctor=current_user.id
+            created_by=current_user.id  # ✅ This maps to 'created_by' in Client model
         )
         db.session.add(new_client)
         db.session.commit()
@@ -125,7 +118,7 @@ def search_client():
     query = request.args.get('query')
     if query:
         clients = Client.query.filter(
-            (Client.name.ilike(f'%{query}%')) | (Client.id.ilike(f'%{query}%'))
+            (Client.full_name.ilike(f'%{query}%')) | (Client.id.ilike(f'%{query}%'))  # ✅ Corrected 'name' to 'full_name'
         ).all()
     else:
         clients = []
