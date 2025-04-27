@@ -1,11 +1,11 @@
+<!-- app/templates/client_profile.html -->
 {% extends "base.html" %}
 
-{% block title %}
-Client Profile
-{% endblock %}
+{% block title %}Client Profile{% endblock %}
 
 {% block client_styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/client.css') }}">
+<!-- Bootstrap Styles (if you want to include Bootstrap via CDN) -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
 {% endblock %}
 
@@ -14,32 +14,29 @@ Client Profile
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
-                <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-                    <div class="card-body p-0">
-                        <div class="row g-0">
-                            <!-- Left Side: Client General Info -->
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <h3 class="fw-normal mb-5" style="color: #4835d4;">General Information</h3>
-                                    <p><strong>Name:</strong> {{ client.full_name }}</p>
-                                    <p><strong>Date of Birth:</strong> {{ client.date_of_birth.strftime('%Y-%m-%d') }}</p>
-                                    <p><strong>Gender:</strong> {{ client.gender }}</p>
-                                </div>
-                            </div>
-
-                            <!-- Right Side: Client Contact Info -->
-                            <div class="col-lg-6 bg-indigo text-white">
-                                <div class="p-5">
-                                    <h3 class="fw-normal mb-5">Contact Information</h3>
-                                    <p><strong>Country:</strong> {{ client.country }}</p>
-                                    <p><strong>County:</strong> {{ client.county }}</p>
-                                    <p><strong>Sub-county:</strong> {{ client.subcounty }}</p>
-                                    <p><strong>Village:</strong> {{ client.village }}</p>
-                                    <p><strong>Email:</strong> {{ client.email }}</p>
-                                    <p><strong>Contact Number:</strong> {{ client.contact_number }}</p>
-                                    <p><strong>Address:</strong> {{ client.address }}</p>
-                                </div>
-                            </div>
+                <div class="row g-0">
+                    <!-- Left Side: Client General Info -->
+                    <div class="col-lg-6">
+                        <div class="profile-card">
+                            <h3>General Information</h3>
+                            <p><strong>Name:</strong> {{ client.full_name }}</p>
+                            <p><strong>Date of Birth:</strong> {{ client.date_of_birth.strftime('%Y-%m-%d') }}</p>
+                            <p><strong>Gender:</strong> {{ client.gender }}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side: Client Contact Info -->
+                    <div class="col-lg-6">
+                        <div class="contact-card">
+                            <h3>Contact Information</h3>
+                            <p><strong>Contact Number:</strong> {{ client.contact_number }}</p>
+                            <p><strong>Address:</strong> {{ client.address }}</p>
+                            <p><strong>Country:</strong> {{ client.country }}</p>
+                            <p><strong>County:</strong> {{ client.county }}</p>
+                            <p><strong>Sub-county:</strong> {{ client.subcounty }}</p>
+                            <p><strong>Village:</strong> {{ client.village }}</p>
+                            <p><strong>Email:</strong> {{ client.email }}</p>
+                            <p><strong>Phone Number:</strong> {{ client.phone_number }}</p>
                         </div>
                     </div>
                 </div>
