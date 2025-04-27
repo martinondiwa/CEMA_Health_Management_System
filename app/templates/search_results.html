@@ -33,10 +33,10 @@
     <tbody>
       {% for client in clients %}
       <tr>
-        <td>{{ client.name }}</td>
-        <td>{{ client.id }}</td>
-        <td>{{ client.email }}</td>
-        <td>{{ client.phone }}</td>
+       <td>{{ client.full_name }}</td>
+       <td>{{ client.id }}</td>
+       <td>{{ client.email }}</td>
+        <td>{{ client.contact_number }}</td>
         <td>
           <a href="{{ url_for('doctor.view_client', client_id=client.id) }}" class="btn btn-success btn-sm">View</a>
           <a href="#" class="btn btn-warning btn-sm">Edit</a>
