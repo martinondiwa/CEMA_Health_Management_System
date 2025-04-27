@@ -1,6 +1,3 @@
-
-/* static/css/client_profile.css */
-
 /* Gradient background for the profile section */
 .gradient-custom-2 {
     background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
@@ -11,7 +8,7 @@
     background-color: #4835d4;
 }
 
-/* Style for the card elements */
+/* Card styles for profile */
 .card-registration-2 {
     border-radius: 15px;
 }
@@ -20,37 +17,70 @@
     padding: 0;
 }
 
+/* Profile card styling */
 .profile-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
     margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .profile-card h3 {
-    margin-bottom: 20px;
+    color: #4835d4;
     font-size: 24px;
-    color: #333;
+    margin-bottom: 20px;
 }
 
 .profile-card p {
-    font-size: 16px;
-    color: #666;
-}
-
-/* Style for the Enrolled Programs section */
-.enrollment-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.enrollment-list li {
-    margin-bottom: 15px;
-}
-
-.enrollment-list strong {
-    font-size: 18px;
     color: #333;
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
-.enrollment-list em {
-    font-style: normal;
-    color: #666;
+.profile-card strong {
+    font-weight: bold;
+    color: #4835d4;
+}
+
+/* Styling for the second card (Contact Info) */
+.contact-card {
+    background-color: #4835d4;
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card h3 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.contact-card p {
+    color: #f4f4f4;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.contact-card strong {
+    font-weight: bold;
+    color: #f4f4f4;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 991px) {
+    .card-registration-2 {
+        margin-bottom: 20px;
+    }
+
+    .profile-card,
+    .contact-card {
+        margin-bottom: 15px;
+    }
+
+    .col-lg-6 {
+        margin-bottom: 20px;
+    }
 }
