@@ -1,5 +1,3 @@
-# app/routes/__init__.py
-
 from flask import Blueprint
 
 # Import each blueprint from their respective modules
