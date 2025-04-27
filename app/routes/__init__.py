@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-# Import each blueprint from their respective modules
+# Imports each blueprint from their respective modules
 from app.routes.auth_routes import auth_bp
 from app.routes.doctor_routes import doctor_bp
 from app.routes.client_routes import client_bp
