@@ -94,9 +94,8 @@ footer p {
     margin: 0;
 }
 
-/* Optional Hero Section */
+/* Hero Section */
 .hero {
-    background: url('your-image.jpg') no-repeat center center fixed;
     background-size: cover;
     padding: 60px 20px;
     text-align: center;
