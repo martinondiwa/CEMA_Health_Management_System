@@ -1,86 +1,93 @@
-/* Gradient background for the profile section */
-.gradient-custom-2 {
-    background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
+/* client.css */
+
+/* General Container Styling */
+.profile-container {
+    background-color: #f7f7f7;
+    padding: 20px;
 }
 
-/* Indigo background for the right section */
-.bg-indigo {
-    background-color: #4835d4;
-}
-
-/* Card styles for profile */
-.card-registration-2 {
-    border-radius: 15px;
-}
-
-.card-body {
-    padding: 0;
-}
-
-/* Profile card styling */
-.profile-card {
-    background: #fff;
-    border-radius: 15px;
+/* Profile Card Styling */
+.profile-card, .contact-card {
+    background-color: #ffffff;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.profile-card h3 {
-    color: #4835d4;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.profile-card p {
+/* Heading Styles */
+.profile-card h3, .contact-card h3 {
+    font-size: 1.5rem;
     color: #333;
-    font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-.profile-card strong {
-    font-weight: bold;
-    color: #4835d4;
+/* Info Box Styling */
+.info-box p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #555;
 }
 
-/* Styling for the second card (Contact Info) */
+.info-box strong {
+    color: #333;
+}
+
+/* Contact Info Section - Background Styling */
 .contact-card {
-    background-color: #4835d4;
-    color: white;
-    border-radius: 15px;
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+}
+
+/* Larger Card Container Styling */
+.grouped-card {
+    background-color: #e8e8e8;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
-.contact-card h3 {
-    color: white;
-    font-size: 24px;
+/* Side by Side Cards */
+.side-by-side-card {
+    background-color: #ffffff;
+    padding: 15px;
+    border: 2px solid #ddd;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    border-radius: 8px;
 }
 
-.contact-card p {
-    color: #f4f4f4;
-    font-size: 16px;
+.side-by-side-card h4 {
+    font-size: 1.2rem;
     margin-bottom: 10px;
+    color: #333;
 }
 
-.contact-card strong {
-    font-weight: bold;
-    color: #f4f4f4;
+.side-by-side-card p {
+    font-size: 1rem;
+    color: #555;
 }
 
-/* Responsive layout for smaller screens */
-@media (max-width: 991px) {
-    .card-registration-2 {
-        margin-bottom: 20px;
-    }
+/* Flexbox Layout for Larger Card Content */
+.grouped-card .row {
+    display: flex;
+    justify-content: space-between;
+}
 
-    .profile-card,
-    .contact-card {
-        margin-bottom: 15px;
-    }
+.grouped-card .col-md-6 {
+    flex: 0 0 48%;
+}
 
-    .col-lg-6 {
-        margin-bottom: 20px;
-    }
+/* Color Adjustments */
+.profile-card {
+    background-color: #ffffff;
+}
+
+.contact-card {
+    background-color: #f4f4f4;
+}
+
+.grouped-card {
+    background-color: #e0e0e0;
 }
