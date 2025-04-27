@@ -24,7 +24,7 @@ from wtforms import StringField, SubmitField, SelectField, DateField
 from wtforms.validators import DataRequired, Length, Optional, Email
 from flask_wtf import FlaskForm
 
-# Form to register a client (use this in doctor_routes.py for client registration)
+# Form to register a client (used in doctor_routes.py for client registration)
 class ClientRegistrationForm(FlaskForm):
     first_name = StringField("First Name", validators=[DataRequired(), Length(max=50)])
     middle_name = StringField("Middle Name", validators=[Optional(), Length(max=50)])
