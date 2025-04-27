@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # Create the Blueprint for the authentication routes
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-# 1. Login Route
+# Login Route
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -31,7 +31,7 @@ def login():
             flash('Invalid login credentials. Please try again.', 'danger')
     return render_template('auth/login.html', form=form)
 
-# 2. Register Route (for doctor/admin only)
+# Register Route (for doctor/admin only)
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -66,7 +66,7 @@ def register():
 
     return render_template('auth/register.html', form=form)
 
-# 3. Logout Route
+# Logout Route
 @auth_bp.route('/logout')
 @login_required
 def logout():
