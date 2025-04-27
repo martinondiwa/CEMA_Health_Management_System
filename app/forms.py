@@ -20,6 +20,10 @@ class RegistrationForm(FlaskForm):
     is_admin = BooleanField('Register as Admin')  # Optional toggle
     submit = SubmitField('Register')
 
+from wtforms import StringField, SubmitField, SelectField, DateField
+from wtforms.validators import DataRequired, Length, Optional, Email
+from flask_wtf import FlaskForm
+
 # Form to register a client (use this in doctor_routes.py for client registration)
 class ClientRegistrationForm(FlaskForm):
     first_name = StringField("First Name", validators=[DataRequired(), Length(max=50)])
@@ -43,6 +47,7 @@ class ClientRegistrationForm(FlaskForm):
     village = StringField("Village / Locality", validators=[DataRequired(), Length(max=100)])
 
     contact_number = StringField("Contact Number", validators=[DataRequired(), Length(max=100)])
+    email = StringField("Email", validators=[DataRequired(), Email(), Length(max=120)])  
     address = StringField("Address", validators=[Optional(), Length(max=200)])
 
     submit = SubmitField("Register Client")
