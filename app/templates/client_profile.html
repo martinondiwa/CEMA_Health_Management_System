@@ -10,18 +10,20 @@
 {% endblock %}
 
 {% block content %}
-<section class="h-100 h-custom gradient-custom-2">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+<section class="profile-container">
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center">
             <div class="col-12">
                 <div class="row g-0">
                     <!-- Left Side: Client General Info -->
                     <div class="col-lg-6">
                         <div class="profile-card">
                             <h3>General Information</h3>
-                            <p><strong>Name:</strong> {{ client.full_name }}</p>
-                            <p><strong>Date of Birth:</strong> {{ client.date_of_birth.strftime('%Y-%m-%d') }}</p>
-                            <p><strong>Gender:</strong> {{ client.gender }}</p>
+                            <div class="info-box">
+                                <p><strong>Name:</strong> {{ client.full_name }}</p>
+                                <p><strong>Date of Birth:</strong> {{ client.date_of_birth.strftime('%Y-%m-%d') }}</p>
+                                <p><strong>Gender:</strong> {{ client.gender }}</p>
+                            </div>
                         </div>
                     </div>
                     
@@ -29,14 +31,35 @@
                     <div class="col-lg-6">
                         <div class="contact-card">
                             <h3>Contact Information</h3>
-                            <p><strong>Contact Number:</strong> {{ client.contact_number }}</p>
-                            <p><strong>Address:</strong> {{ client.address }}</p>
-                            <p><strong>Country:</strong> {{ client.country }}</p>
-                            <p><strong>County:</strong> {{ client.county }}</p>
-                            <p><strong>Sub-county:</strong> {{ client.subcounty }}</p>
-                            <p><strong>Village:</strong> {{ client.village }}</p>
-                            <p><strong>Email:</strong> {{ client.email }}</p>
-                          
+                            <div class="info-box">
+                                <p><strong>Contact Number:</strong> {{ client.contact_number }}</p>
+                                <p><strong>Address:</strong> {{ client.address }}</p>
+                                <p><strong>Country:</strong> {{ client.country }}</p>
+                                <p><strong>County:</strong> {{ client.county }}</p>
+                                <p><strong>Sub-county:</strong> {{ client.subcounty }}</p>
+                                <p><strong>Village:</strong> {{ client.village }}</p>
+                                <p><strong>Email:</strong> {{ client.email }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Larger card for grouped info -->
+                <div class="col-12">
+                    <div class="grouped-card">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="side-by-side-card">
+                                    <h4>Side Card 1</h4>
+                                    <p>Additional content can go here</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="side-by-side-card">
+                                    <h4>Side Card 2</h4>
+                                    <p>Additional content can go here</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
