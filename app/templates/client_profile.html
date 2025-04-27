@@ -76,27 +76,27 @@
                     <br>
                     <br>
                     <!-- Left Side: Country and County Side-by-Side -->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="info-card contact-info-card">
                             <div class="row g-2">
-                                <div class="col-6">
+                                <div class="col-4">
                                     <p><strong>Country:</strong> {{ client.country }}</p>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <p><strong>County:</strong> {{ client.county }}</p>
+                                </div>
+                                 <div class="col-4">
+                                    <p><strong>Sub-county:</strong> {{ client.subcounty }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Right Side: Sub-county and Village Side-by-Side -->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="info-card contact-info-card">
                             <div class="row g-2">
-                                <div class="col-6">
-                                    <p><strong>Sub-county:</strong> {{ client.subcounty }}</p>
-                                </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                     <p><strong>Village:</strong> {{ client.village }}</p>
                                 </div>
                             </div>
