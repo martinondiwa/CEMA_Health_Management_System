@@ -47,14 +47,16 @@ class Client(db.Model):
     village = db.Column(db.String(100), nullable=False)
 
     contact_number = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)  
     address = db.Column(db.String(255), nullable=True)
 
-    created_by = db.Column(db.Integer, db.ForeignKey('doctors.id'))  # doctor who registered
+    created_by = db.Column(db.Integer, db.ForeignKey('doctors.id'))
 
     doctor = db.relationship('Doctor', backref='clients')
 
     def __repr__(self):
         return f"<Client {self.full_name}>"
+
 
 # ProgramType model
 class ProgramType(db.Model):
