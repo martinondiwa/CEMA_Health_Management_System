@@ -1,5 +1,3 @@
-# app/routes/client_routes.py
-
 from flask import Blueprint, render_template, request, redirect, url_for
 from app.models import Client, Program
 from app import db
