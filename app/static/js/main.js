@@ -1,6 +1,5 @@
-// main.js
 
-// 1. Auto-hide flash messages
+//  Auto-hide flash messages
 document.addEventListener("DOMContentLoaded", () => {
     const flashMessages = document.querySelectorAll(".flash-message");
     flashMessages.forEach(msg => {
@@ -11,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// 2. Confirm before deleting (used in delete buttons)
+//  Confirm before deleting (used in delete buttons)
 const deleteButtons = document.querySelectorAll(".delete-button");
 deleteButtons.forEach(button => {
     button.addEventListener("click", function (e) {
@@ -22,7 +21,7 @@ deleteButtons.forEach(button => {
     });
 });
 
-// 3. Show/hide password toggle (for login/register)
+// Show/hide password toggle (for login/register)
 const togglePassword = document.querySelectorAll(".toggle-password");
 togglePassword.forEach(icon => {
     icon.addEventListener("click", () => {
