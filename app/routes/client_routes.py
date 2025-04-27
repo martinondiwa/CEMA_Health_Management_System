@@ -15,4 +15,16 @@ def view_profile(client_id):
     enrolled_programs = client.programs
     return render_template('client_profile.html', client=client, programs=enrolled_programs)
 
+# Route to search for clients
+@client_bp.route('/search', methods=['GET', 'POST'])
+def search_clients():
+    clients = None
+    query = ''
+
+    if request.method == 'POST':
+        query = request.form.get('search', '')
+        if query:
+            clients = Client.query.filter(Client.full_name.ilike(f'%{query}%')).all()
+
+    return render_template('search_results.html', clients=clients, query=query)
 
