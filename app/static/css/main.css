@@ -1,72 +1,100 @@
-
 /* Global Styles */
-body {
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
-    margin: 0;
-    transition: opacity 0.5s ease-in-out; /* Smooth transition for fade-in effect */
-    padding: 0;
-}
+    transition: opacity 0.5s ease-in-out;
 }
 
+/* Fade in effect on load */
 body.fade-in {
     opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
 }
 
-/* Ensure the footer sticks at the bottom */
-html, body {
-    height: 100%;
+/* Keyframes for Fade in */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
+/* Navbar */
+header .navbar {
+    padding: 0.75rem 1rem;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    margin-right: 1rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    transform: scale(1.05);
+    color: #adb5bd;
+}
+
+/* Main content */
 main {
-    min-height: calc(100vh - 120px); /* Ensure content takes up available space */
-    padding-bottom: 100px; /* Space for the footer */
+    flex: 1 0 auto;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
 }
 
-/* Header Styles */
-header {
-    background-color: #007bff;
-    color: white;
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-header h1 {
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 1rem 0;
     text-align: center;
+    width: 100%;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Buttons and search */
+form input[type="search"] {
+    border-radius: 0.25rem;
+}
+
+form button[type="submit"] {
+    border-radius: 0.25rem;
+    margin-left: 0.5rem;
+}
+
+/* Hover Effects */
+nav a,
+.btn {
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+nav a:hover,
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #0056b3;
+    color: white;
+}
+
+/* Ensure the page structure stretches correctly */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Smooth fade for footer text */
+footer p {
     margin: 0;
 }
 
-nav {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-nav a {
-    color: white;
-    margin: 0 15px;
-    font-size: 16px;
-    transition: color 0.3s;
-}
-
-nav a:hover {
-    color: #d1d1d1;
-}
-
-/* Footer Styles */
-footer {
-    background-color: #343a40;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-
-/* Hero Section Styles */
+/* Optional Hero Section */
 .hero {
     background: url('your-image.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -82,56 +110,6 @@ footer {
 
 .hero p {
     font-size: 1.2rem;
-    color: #555;
+    color: #e0e0e0;
     margin-bottom: 30px;
 }
-
-/* Button Styles */
-.action-buttons .btn {
-    padding: 12px 24px;
-    margin: 0 10px;
-    border-radius: 6px;
-    text-decoration: none;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    color: white;
-}
-
-.btn-outline {
-    background-color: transparent;
-    border: 2px solid #007bff;
-    color: #007bff;
-}
-
-/* Smooth Fade Transition for Button Hover */
-nav a,
-.btn {
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
-}
-
-nav a:hover,
-.btn:hover {
-    transform: scale(1.1); /* Slightly enlarge buttons and links on hover */
-    background-color: #0056b3; /* Change the background on hover */
-    color: white;
-}
-
-/* Footer Animation */
-footer p {
-    animation: fadeIn 1s ease-out;
-}
-
-/* Keyframe Animation for Fade In Effect */
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-/* Smooth transition for page loading */
-body {
-    opacity: 0;
-    animation: fadeIn 1s ease-in-out forwards;
-}
-
