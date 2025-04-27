@@ -5,7 +5,7 @@ from flask import request
 # Define the Blueprint for API routes
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 
-# 1. Fetch a Single Client's Profile
+#Fetch a Single Client's Profile
 @api_bp.route('/client/<int:client_id>', methods=['GET'])
 def get_client_profile(client_id):
     client = Client.query.get_or_404(client_id)
@@ -20,7 +20,7 @@ def get_client_profile(client_id):
     }
     return jsonify(client_data), 200  # Return client data as JSON response
 
-# 2. Fetch All Clients (Optional, for admin use or external systems)
+# Fetch All Clients (Optional, for admin use or external systems)
 @api_bp.route('/clients', methods=['GET'])
 def get_all_clients():
     clients = Client.query.all()
