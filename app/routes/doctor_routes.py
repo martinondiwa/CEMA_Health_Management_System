@@ -7,7 +7,7 @@ from app.models import ProgramType
 
 doctor_bp = Blueprint('doctor', __name__, url_prefix='/doctor')
 
-# Ensure only logged-in doctors can access these routes
+# Ensures only logged-in doctors can access these routes
 def doctor_required(func):
     @wraps(func)
     @login_required
@@ -19,7 +19,7 @@ def doctor_required(func):
     return wrapper
 
 
-# 1. Doctor's Dashboard
+# Doctor's Dashboard
 @doctor_bp.route('/dashboard')
 @doctor_required
 def dashboard():
@@ -39,7 +39,7 @@ def dashboard():
     )
 
 
-# 2. Create a new Health Program
+# Create a new Health Program
 @doctor_bp.route('/program/create', methods=['GET', 'POST'])
 @doctor_required
 def create_program():
@@ -68,7 +68,7 @@ def create_program():
 
     return render_template('create_program.html', form=form)
 
-# 3. Register a New Client
+# Register a New Client
 @doctor_bp.route('/client/register', methods=['GET', 'POST'])
 @doctor_required
 def register_client():
@@ -96,7 +96,7 @@ def register_client():
         return redirect(url_for('doctor.dashboard'))
     return render_template('register_client.html', form=form)
 
-# 4. Enroll a Client in a Program
+# Enroll a Client in a Program
 @doctor_bp.route('/client/enroll', methods=['GET', 'POST'])
 @doctor_required
 def enroll_client():
@@ -133,7 +133,7 @@ def enroll_client():
     )
 
 
-# 5. View a Specific Client's Profile
+# View a Specific Client's Profile
 @doctor_bp.route('/client/profile/<int:client_id>')
 @doctor_required
 def view_client(client_id):
@@ -141,7 +141,7 @@ def view_client(client_id):
     return render_template('client_profile.html', client=client)
 
 
-# 6. View All Clients
+# View All Clients
 @doctor_bp.route('/clients')
 @doctor_required
 def view_all_clients():
@@ -149,7 +149,7 @@ def view_all_clients():
     return render_template('clients_list.html', clients=clients)
 
 
-# 7. Search for a Client
+# Search for a Client
 @doctor_bp.route('/client/search', methods=['GET'])
 @doctor_required
 def search_client():
