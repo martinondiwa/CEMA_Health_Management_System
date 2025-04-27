@@ -5,16 +5,8 @@
 
 {% block client_styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/client.css') }}">
-<!-- Bootstrap Styles -->
+<!-- Bootstrap Styles (if you want to include Bootstrap via CDN) -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-<style>
-    .gradient-custom-2 {
-        background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
-    }
-    .bg-indigo {
-        background-color: #4835d4;
-    }
-</style>
 {% endblock %}
 
 {% block content %}
@@ -22,53 +14,33 @@
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
-                <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-                    <div class="card-body p-0">
-                        <div class="row g-0">
-                            <!-- Left Side: Client General Info -->
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <h3 class="fw-normal mb-5" style="color: #4835d4;">General Information</h3>
-                                    
-                                    <div class="profile-card">
-                                        <h3>{{ client.full_name }}</h3>
-                                        <p><strong>Date of Birth:</strong> {{ client.date_of_birth.strftime('%Y-%m-%d') }}</p>
-                                        <p><strong>Gender:</strong> {{ client.gender }}</p>
-                                        <p><strong>Contact Info:</strong> {{ client.contact_number }}</p>
-                                        <p><strong>Address:</strong> {{ client.address }}</p>
-                                        <p><strong>Country:</strong> {{ client.country }}</p>
-                                        <p><strong>County:</strong> {{ client.county }}</p>
-                                        <p><strong>Sub-county:</strong> {{ client.subcounty }}</p>
-                                        <p><strong>Village:</strong> {{ client.village }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Right Side: Enrolled Programs -->
-                            <div class="col-lg-6 bg-indigo text-white">
-                                <div class="p-5">
-                                    <h3 class="fw-normal mb-5">Enrolled Programs</h3>
-                                    {% if client.enrollments %}
-                                        <ul class="enrollment-list">
-                                            {% for enrollment in client.enrollments %}
-                                                <li>
-                                                    <strong>{{ enrollment.program.title }}</strong>
-                                                    <br>
-                                                    <em>Type:</em> {{ enrollment.program.program_type.name }}
-                                                    <br>
-                                                    <em>Description:</em> {{ enrollment.program.description }}
-                                                    <br>
-                                                    <em>Admission No:</em> {{ client.admission_number }}
-                                                    <br>
-                                                    <em>Enrolled on:</em> {{ enrollment.enrollment_date.strftime('%Y-%m-%d') }}
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% else %}
-                                        <p>No enrollments found for this client.</p>
-                                    {% endif %}
-                                </div>
-                            </div>
+                <div class="row g-0">
+                    <!-- Left Side: Client General Info -->
+                    <div class="col-lg-6">
+                        <div class="profile-card">
+                            <h3>General Information</h3>
+                            <p><strong>Name:</strong> {{ client.full_name }}</p>
+                            <p><strong>Date of Birth:</strong> {{ client.date_of_birth.strftime('%Y-%m-%d') }}</p>
+                            <p><strong>Gender:</strong> {{ client.gender }}</p>
+                            <p><strong>Contact Number:</strong> {{ client.contact_number }}</p>
+                            <p><strong>Address:</strong> {{ client.address }}</p>
+                            <p><strong>Country:</strong> {{ client.country }}</p>
+                            <p><strong>County:</strong> {{ client.county }}</p>
+                            <p><strong>Sub-county:</strong> {{ client.subcounty }}</p>
+                            <p><strong>Village:</strong> {{ client.village }}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side: Client Contact Info -->
+                    <div class="col-lg-6">
+                        <div class="contact-card">
+                            <h3>Contact Information</h3>
+                            <p><strong>Street + Nr:</strong> {{ client.street_address }}</p>
+                            <p><strong>Additional Info:</strong> {{ client.additional_info }}</p>
+                            <p><strong>Zip Code:</strong> {{ client.zip_code }}</p>
+                            <p><strong>Place:</strong> {{ client.place }}</p>
+                            <p><strong>Email:</strong> {{ client.email }}</p>
+                            <p><strong>Phone Number:</strong> {{ client.phone_number }}</p>
                         </div>
                     </div>
                 </div>
