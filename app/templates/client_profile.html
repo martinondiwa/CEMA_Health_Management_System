@@ -12,6 +12,13 @@
 {% block content %}
 <section class="profile-container">
     <div class="container py-5">
+        <!-- Page Title -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>Client Information</h1>
+            </div>
+        </div>
+        
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-12">
                 <div class="row g-3">
@@ -47,16 +54,34 @@
                                 <div class="col-12">
                                     <p><strong>Address:</strong> {{ client.address }}</p>
                                 </div>
-                                <div class="col-12">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <!-- Left Side: Country and County Side-by-Side -->
+                    <div class="col-md-6">
+                        <div class="info-card contact-info-card">
+                            <div class="row g-2">
+                                <div class="col-6">
                                     <p><strong>Country:</strong> {{ client.country }}</p>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <p><strong>County:</strong> {{ client.county }}</p>
                                 </div>
-                                <div class="col-12">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Sub-county and Village Side-by-Side -->
+                    <div class="col-md-6">
+                        <div class="info-card contact-info-card">
+                            <div class="row g-2">
+                                <div class="col-6">
                                     <p><strong>Sub-county:</strong> {{ client.subcounty }}</p>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <p><strong>Village:</strong> {{ client.village }}</p>
                                 </div>
                             </div>
