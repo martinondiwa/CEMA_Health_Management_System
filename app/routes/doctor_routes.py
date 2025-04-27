@@ -68,8 +68,33 @@ def create_program():
 
     return render_template('create_program.html', form=form)
 
-
-
+# 3. Register a New Client
+@doctor_bp.route('/client/register', methods=['GET', 'POST'])
+@doctor_required
+def register_client():
+    form = ClientRegistrationForm()
+    if form.validate_on_submit():
+        full_name = " ".join(filter(None, [form.first_name.data, form.middle_name.data, form.sir_name.data]))
+        new_client = Client(
+            full_name=full_name,
+            gender=form.gender.data,
+            date_of_birth=form.date_of_birth.data,
+            national_id=form.national_id.data,
+            birth_certificate=form.birth_certificate.data,
+            country=form.country.data,
+            county=form.county.data,
+            subcounty=form.subcounty.data,
+            village=form.village.data,
+            contact_number=form.contact_number.data,
+            email=form.email.data,  
+            address=form.address.data,
+            created_by=current_user.id
+        )
+        db.session.add(new_client)
+        db.session.commit()
+        flash("Client registered successfully!", "success")
+        return redirect(url_for('doctor.dashboard'))
+    return render_template('register_client.html', form=form)
 
 # 4. Enroll a Client in a Program
 @doctor_bp.route('/client/enroll', methods=['GET', 'POST'])
