@@ -1,1 +1,56 @@
 
+/* static/css/client_profile.css */
+
+/* Gradient background for the profile section */
+.gradient-custom-2 {
+    background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
+}
+
+/* Indigo background for the right section */
+.bg-indigo {
+    background-color: #4835d4;
+}
+
+/* Style for the card elements */
+.card-registration-2 {
+    border-radius: 15px;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.profile-card {
+    margin-bottom: 20px;
+}
+
+.profile-card h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.profile-card p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Style for the Enrolled Programs section */
+.enrollment-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.enrollment-list li {
+    margin-bottom: 15px;
+}
+
+.enrollment-list strong {
+    font-size: 18px;
+    color: #333;
+}
+
+.enrollment-list em {
+    font-style: normal;
+    color: #666;
+}
