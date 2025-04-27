@@ -32,7 +32,7 @@ form {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd;  /* Added border for separation */
+    border: 1px solid #ddd;  
 }
 
 /* Form Field Boxes (Greish/Dark Brownish) */
@@ -128,7 +128,7 @@ input[type="text"][name="query"] {
     }
 }
 
-/* Container Styles for Larger Forms (e.g., Register New Client) */
+
 .container-fluid {
     margin-bottom: 30px;
 }
