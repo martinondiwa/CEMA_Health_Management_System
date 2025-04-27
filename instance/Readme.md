@@ -1,0 +1,1 @@
+Configuration file contains the core settings for the application, including the secret key for security, the database connection URI for SQLAlchemy, and options for enabling debug mode and optimizing performance.
