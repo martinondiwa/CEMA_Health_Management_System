@@ -1,5 +1,3 @@
-# tests/test_programs.py
-
 import unittest
 from app import create_app, db
 from app.models import Program, Client, Enrollment
