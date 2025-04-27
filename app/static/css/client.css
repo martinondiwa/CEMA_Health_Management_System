@@ -1,79 +1,113 @@
-/* client.css */
+/* static/css/client_profile.css */
 
-/* General Container Styling */
-.profile-container {
-    background-color: #f0f8ff; /* Light background */
-    padding: 20px;
+/* Gradient background for the profile section */
+.gradient-custom-2 {
+    background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
 }
 
-/* Card Styling (General Information and Contact Information) */
-.info-card {
-    background-color: #ffffff;
+/* Indigo background for the right section */
+.bg-indigo {
+    background-color: #4835d4;
+}
+
+/* Card styles for profile */
+.card-registration-2 {
+    border-radius: 15px;
+}
+
+.card-body {
+    padding: 0;
+}
+
+/* Profile card styling */
+.profile-card {
+    background: #fff;
+    border-radius: 15px;
     padding: 20px;
     margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* General Information Card - Light Blue Background */
-.general-info-card {
-    background-color: #d0eaff; /* Light Blue */
+.profile-card h3 {
+    color: #4835d4;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-/* Contact Information Card - Light Green Background */
-.contact-info-card {
-    background-color: #d9fbd3; /* Light Green */
-}
-
-/* Heading Styles for Cards */
-.info-card h3 {
-    font-size: 1.5rem;
+.profile-card p {
     color: #333;
-    margin-bottom: 15px;
-}
-
-/* Layout for Side-by-Side Information */
-.row.g-2 {
+    font-size: 16px;
     margin-bottom: 10px;
 }
 
-.row.g-2 .col-md-6 {
-    padding-right: 10px;
-    padding-left: 10px;
+.profile-card strong {
+    font-weight: bold;
+    color: #4835d4;
 }
 
-.info-card p {
-    margin: 5px 0;
-    font-size: 1rem;
-    color: #555;
+/* Gender centered styling */
+.gender-center {
+    text-align: center;
+    margin: 20px 0;
 }
 
-.info-card strong {
-    color: #333;
+/* Styling for the second card (Contact Info) */
+.contact-card {
+    background-color: #4835d4;
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Flexbox Layout for Row and Columns */
-.row.g-3 {
-    display: flex;
-    justify-content: space-between;
-}
-
-.col-lg-6 {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+.contact-card h3 {
+    color: white;
+    font-size: 24px;
     margin-bottom: 20px;
 }
 
-/* Ensuring responsiveness on smaller screens */
-@media (max-width: 768px) {
-    .col-lg-6 {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-
-    .info-card {
-        padding: 15px;
-    }
+.contact-card p {
+    color: #f4f4f4;
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
+.contact-card strong {
+    font-weight: bold;
+    color: #f4f4f4;
+}
+
+/* Country centered styling */
+.country-center {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* County and Sub-county side-by-side */
+.contact-card .row {
+    margin-bottom: 20px;
+}
+
+.contact-card .row .col-md-6 {
+    text-align: center;
+}
+
+.contact-card .row .col-md-6 p {
+    margin: 10px 0;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 991px) {
+    .card-registration-2 {
+        margin-bottom: 20px;
+    }
+
+    .profile-card,
+    .contact-card {
+        margin-bottom: 15px;
+    }
+
+    .col-lg-6 {
+        margin-bottom: 20px;
+    }
+}
