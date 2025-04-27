@@ -10,7 +10,7 @@ class ProgramTests(unittest.TestCase):
         with self.app.app_context():
             db.create_all()
 
-            # Create test programs and clients
+            # Creating test programs and clients
             self.program1 = Program(name="HIV", description="HIV Care Program")
             self.program2 = Program(name="TB", description="Tuberculosis Treatment Program")
             self.client1 = Client(name="Alice Smith", age=30, gender="Female")
@@ -28,13 +28,13 @@ class ProgramTests(unittest.TestCase):
             db.drop_all()
 
     def test_create_program(self):
-        # Test that a program can be created and saved
+        # Testing that a program can be created and saved
         program = Program.query.filter_by(name="HIV").first()
         self.assertIsNotNone(program)
         self.assertEqual(program.description, "HIV Care Program")
 
     def test_create_multiple_programs(self):
-        # Test that multiple programs can be created
+        # Testing that multiple programs can be created
         program3 = Program(name="Malaria", description="Malaria Treatment Program")
         db.session.add(program3)
         db.session.commit()
@@ -44,26 +44,26 @@ class ProgramTests(unittest.TestCase):
         self.assertEqual(program.description, "Malaria Treatment Program")
 
     def test_view_program_details(self):
-        # Test viewing program details (program's clients, etc.)
+        # Testing viewing program details (program's clients, etc.)
         response = self.client.get(f'/program/{self.program1.id}')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"HIV Care Program", response.data)
         self.assertIn(b"Alice Smith", response.data)  # Client enrolled in the program
 
     def test_enroll_client_in_program(self):
-        # Test enrolling a client into a new program
+        # Testing enrolling a client into a new program
         client2 = Client(name="Bob Johnson", age=25, gender="Male")
         program3 = Program(name="TB", description="Tuberculosis Program")
         db.session.add(client2)
         db.session.add(program3)
         db.session.commit()
 
-        # Enroll client2 in program3
+        # Enrolling client2 in program3
         enrollment = Enrollment(client_id=client2.id, program_id=program3.id)
         db.session.add(enrollment)
         db.session.commit()
 
-        # Verify the enrollment
+        # Verifying the enrollment
         client2 = Client.query.get(client2.id)
         self.assertIn(program3, client2.programs)
 
