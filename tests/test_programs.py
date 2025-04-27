@@ -68,7 +68,7 @@ class ProgramTests(unittest.TestCase):
         self.assertIn(program3, client2.programs)
 
     def test_program_not_found(self):
-        # Test trying to view a non-existent program
+        # Testing trying to view a non-existent program
         response = self.client.get('/program/999')  # Non-existent program ID
         self.assertEqual(response.status_code, 404)
 
