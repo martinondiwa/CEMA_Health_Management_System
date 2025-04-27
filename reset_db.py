@@ -1,6 +1,6 @@
 from app import db
-from app import create_app  # if you're using an app factory
-from app.models import *    # optional, to ensure all models are loaded
+from app import create_app  
+from app.models import *    #  ensures all models are loaded
 
 app = create_app()
 
