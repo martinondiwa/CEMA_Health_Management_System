@@ -2,12 +2,12 @@
 
 /* General Container Styling */
 .profile-container {
-    background-color: #f7f7f7;
+    background-color: #f0f8ff; /* Light background */
     padding: 20px;
 }
 
-/* Profile Card Styling */
-.profile-card, .contact-card {
+/* Card Styling (General Information and Contact Information) */
+.info-card {
     background-color: #ffffff;
     padding: 20px;
     margin-bottom: 20px;
@@ -15,79 +15,65 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Heading Styles */
-.profile-card h3, .contact-card h3 {
+/* General Information Card - Light Blue Background */
+.general-info-card {
+    background-color: #d0eaff; /* Light Blue */
+}
+
+/* Contact Information Card - Light Green Background */
+.contact-info-card {
+    background-color: #d9fbd3; /* Light Green */
+}
+
+/* Heading Styles for Cards */
+.info-card h3 {
     font-size: 1.5rem;
     color: #333;
     margin-bottom: 15px;
 }
 
-/* Info Box Styling */
-.info-box p {
-    margin: 10px 0;
-    font-size: 1rem;
-    color: #555;
-}
-
-.info-box strong {
-    color: #333;
-}
-
-/* Contact Info Section - Background Styling */
-.contact-card {
-    background-color: #f9f9f9;
-    border: 2px solid #ddd;
-}
-
-/* Larger Card Container Styling */
-.grouped-card {
-    background-color: #e8e8e8;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-/* Side by Side Cards */
-.side-by-side-card {
-    background-color: #ffffff;
-    padding: 15px;
-    border: 2px solid #ddd;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    border-radius: 8px;
-}
-
-.side-by-side-card h4 {
-    font-size: 1.2rem;
+/* Layout for Side-by-Side Information */
+.row.g-2 {
     margin-bottom: 10px;
-    color: #333;
 }
 
-.side-by-side-card p {
+.row.g-2 .col-md-6 {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.info-card p {
+    margin: 5px 0;
     font-size: 1rem;
     color: #555;
 }
 
-/* Flexbox Layout for Larger Card Content */
-.grouped-card .row {
+.info-card strong {
+    color: #333;
+}
+
+/* Flexbox Layout for Row and Columns */
+.row.g-3 {
     display: flex;
     justify-content: space-between;
 }
 
-.grouped-card .col-md-6 {
-    flex: 0 0 48%;
+.col-lg-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 20px;
 }
 
-/* Color Adjustments */
-.profile-card {
-    background-color: #ffffff;
+/* Ensuring responsiveness on smaller screens */
+@media (max-width: 768px) {
+    .col-lg-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .info-card {
+        padding: 15px;
+    }
 }
 
-.contact-card {
-    background-color: #f4f4f4;
-}
-
-.grouped-card {
-    background-color: #e0e0e0;
-}
