@@ -1,8 +1,8 @@
 from app import create_app
 
-# Create the Flask application instance using the factory function
+# Creating Flask application instance using the factory function
 app = create_app()
 
-# Run the app if this file is executed directly
+# Running the app 
 if __name__ == '__main__':
-    app.run(debug=False)  # You can set `debug=False` in production
+    app.run(debug=False)  
