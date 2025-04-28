@@ -50,4 +50,4 @@ CEMA_Health_Management_System/
 ├── run.py                           # Entry script
 ├── setup.sh                         # Setup script
 ├── presentation.pptx                # System pitch/design slides
-└── prototype_demo.mp4               # System demo recording
+└── prototype_demo.mp4               # System demo recordiing
