@@ -39,7 +39,7 @@ SECRET_KEY=your-secret-key-here
 bash
 CopyEdit
 python run.py
-The app will be available at http://127.0.0.1:5000/.
+The app will be available at the local host example ( http://127.0.0.1:5000/.)
 Testing
 To run tests, make sure the virtual environment is activated, then run:
 bash
