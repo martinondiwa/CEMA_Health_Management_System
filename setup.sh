@@ -5,7 +5,7 @@ echo "Setting up the CEMA Health Management System..."
 
 # Step 1: Create a virtual environment
 echo "Creating virtual environment..."
-python3 -m venv venv
+python3 -m venv venv-Cema
 
 # Step 2: Activate the virtual environment
 echo "Activating the virtual environment..."
