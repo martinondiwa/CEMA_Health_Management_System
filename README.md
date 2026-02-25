@@ -10,7 +10,7 @@ Features
 Technology Stack
 •	Backend: Flask (Python)
 •	Frontend: HTML5, CSS3, JavaScript (with Bootstrap and custom styles)
-•	Database: SQLAlchemy (for development); can be easily switched to other databases for production (e.g., PostgreSQL, MySQL)
+•	Database: SQLAlchemy (for development); is easily switched to other databases for production (e.g., PostgreSQL, MySQL)
 •	Authentication: Flask-Login for user authentication
 •	Testing: unittest, pytest
 Installation
