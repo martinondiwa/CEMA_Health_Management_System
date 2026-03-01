@@ -2,8 +2,8 @@
 CEMA Health Management System
 CEMA Health Management System is a comprehensive web-based application designed to streamline the management of healthcare operations. It is built with a focus on improving doctor-client interactions, managing client data, and facilitating program creation and client enrollments.
 Features
-•	Doctor/Admin Dashboard: Enables doctors and administrators to manage clients, create programs, and monitor overall system usage.
-•	Client Profiles: Allows clients to view their personal health data and track their progress in various health programs.
+•	Doctor/Admin Dashboard: Enables doctors and administrators to manage clients, create programs, and monitor overall system usage
+•	Client Profiles: Allows clients to view their personal health data and track their progress in various health programs
 •	User Authentication: Secure login and registration system for doctors and administrators.
 •	Program Management: Ability for doctors to create health programs and enroll clients.
 •	RESTful API: Provides an API for interacting with client data programmatically.
